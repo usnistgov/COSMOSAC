@@ -1,0 +1,9 @@
+[submodule "externals/pybind11"]
+	path = externals/pybind11
+	url = https://github.com/pybind/pybind11.git
+[submodule "externals/Eigen"]
+	path = externals/Eigen
+	url = https://github.com/eigenteam/eigen-git-mirror.git
+[submodule "externals/Catch"]
+	path = externals/Catch
+	url = https://github.com/catchorg/Catch2

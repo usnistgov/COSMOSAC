@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>COSMO-SAC visualization</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            body {
+                color: #000;
+                font-family:Monospace;
+                font-size:13px;
+                text-align:center;
+                font-weight: bold;
+                background-color: #fff;
+                margin: 0px;
+                overflow: hidden;
+            }
+            #info {
+                color:#000;
+                position: absolute;
+                top: 0px; width: 100%;
+                padding: 5px;
+                background-color: #cccccc;
+            }
+            a {
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div id="info">three.js COSMO-SAC segment visualization<br />
+        press a: toggle visibility of segments<br />
+        </div>
+
+        <div id="container"></div>
+
+        <script src="three.min.js"></script>
+        <script src="Lut.js"></script>
+        <script src="OrbitControls.js"></script>
+        <script src="Data.js"></script>
+
+        <script>
+
+            var camera, scene, renderer;
+            var material;
+            var the_segments=[];
+
+            init();
+            animate();
+
+            function init() {
+
+              camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.01, 100);
+              camera.position.z = 10;
+              scene = new THREE.Scene();
+
+              var light = new THREE.AmbientLight(0xffffff); // soft white light
+              scene.add(light);
+
+              var light = new THREE.HemisphereLight( 0xffffff, 0x080820, 1 );
+              scene.add( light );              
+
+              for (var i = 0; i < spheres.length; ++i){
+
+                  geometry = new THREE.SphereGeometry(0.2,30,30);
+                  material = new THREE.MeshLambertMaterial({
+                    color: spheres[i][0]
+                  });
+
+                  mesh = new THREE.Mesh(geometry, material);
+                  mesh.position.x = spheres[i][1];
+                  mesh.position.y = spheres[i][2];
+                  mesh.position.z = spheres[i][3];
+
+                  scene.add(mesh);
+              }
+              var maxcharge = -100000, mincharge = 100000;
+              for (var i = 0; i < segments.length; ++i){
+                var charge = segments[i][1];
+                if (charge < mincharge){
+                  mincharge = charge;
+                }
+                else if (charge > maxcharge){
+                  maxcharge = charge;
+                }
+              }
+
+              var lut = new THREE.Lut('rainbow', 512);
+              lut.setMin(mincharge);
+              lut.setMax(maxcharge);
+
+              for (var i = 0; i < segments.length; ++i){
+
+                  geometry = new THREE.CylinderBufferGeometry(segments[i][0], segments[i][0], 0.05, 6, 1, false, 0, 2*Math.PI);
+                  material = new THREE.MeshLambertMaterial({
+                    color: lut.getColor(segments[i][1]),
+                    transparent: true,
+                    opacity: 0.75
+                  });
+                  mesh = new THREE.Mesh(geometry, material);
+                  // First we decide on the "up" direction of the segment which will point at the atom
+                  mesh.up = new THREE.Vector3(0,1,0);
+                  // Then we extract the normal direction from atom to segment center
+                  nx = segments[i][5];
+                  ny = segments[i][6];
+                  nz = segments[i][7];
+                  // We make the segment look along the normal direction (towards the atom)
+                  mesh.lookAt(nx,ny,nz);
+                  mesh.rotateX(Math.PI/2); // as noted by https://stackoverflow.com/a/46326992 this fixes the alignment;  it's not clear why this is needed in the first place...
+                  // Then we translate it into position
+                  mesh.position.x = segments[i][2];
+                  mesh.position.y = segments[i][3];
+                  mesh.position.z = segments[i][4];
+                  // And finally we add it
+                  scene.add(mesh);
+                  // And store it (for toggling characteristics)
+                  the_segments.push(mesh);
+              }
+
+              renderer = new THREE.WebGLRenderer({
+                antialias: true
+              });
+
+              var controls = new THREE.OrbitControls( camera );
+
+              renderer.setClearColor(%BGCOLOR%);
+              renderer.setSize(window.innerWidth, window.innerHeight);
+              document.body.appendChild(renderer.domElement);
+
+              window.addEventListener( 'keydown', onKeyDown, true );
+
+            }
+
+            function animate() {
+
+              requestAnimationFrame(animate);
+
+              // mesh.rotation.x += 0.01;
+              // mesh.rotation.y += 0.02;
+
+              renderer.render(scene, camera);
+            }
+            function onKeyDown(e) {
+              if ( e.keyCode === 65 ) { // the letter 'a'
+                console.log(e.keyCode);
+                for (var i = 0; i < the_segments.length; ++i){
+                  the_segments[i].visible = !the_segments[i].visible;
+                }
+              }
+            }
+        </script>
+    </body>
+</html>

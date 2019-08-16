@@ -1,0 +1,7 @@
+/build
+/.ipynb_checkpoints
+/cCOSMO.egg-info
+/dist
+/profiles/UD/test1
+/profiles/UD/test3
+**/__pycache__
