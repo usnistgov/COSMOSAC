@@ -77,8 +77,8 @@ if __name__ == '__main__':
                         const=True, default=False,
                         help="Don't launch the file")
 
-    args = parser.parse_args()
-    # args = parser.parse_args('--name DECAFLUOROBUTANE --ofname SAC-vis.html --bgcolor 0x1199ff --overwrite'.split(' '))  # For testing
+    # args = parser.parse_args()
+    args = parser.parse_args('--name NEOPENTANE --ofname SAC-vis.html --bgcolor 0x1199ff --overwrite'.split(' '))  # For testing
     write_and_load(name = args.name[0], 
                    ofname = args.ofname[0], 
                    overwrite = args.overwrite, 

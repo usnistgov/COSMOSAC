@@ -4,6 +4,7 @@
 #include "COSMO_SAC/util.hpp"
 #include <Eigen/Dense>
 #include <map>
+#include <limits>
 #include <iterator>
 #include <algorithm>
 #include <cctype>
@@ -311,8 +312,13 @@ public:
         else {
             throw std::invalid_argument("Unable to match dispersion flag: \""+flag+"\"");
         }
-        
-        fluid.dispersion_eoverkB = fluid.meta["disp. e/kB [K]"];
+        if (fluid.meta["disp. e/kB [K]"].is_null()){
+            // The null from JSON is mapped to a NaN of C++
+            fluid.dispersion_eoverkB = std::numeric_limits<double>::quiet_NaN();
+        }
+        else {
+            fluid.dispersion_eoverkB = fluid.meta["disp. e/kB [K]"];
+        }
         add_to_db(info.InChIKey, std::move(fluid));
     }
     std::string to_JSON(){
