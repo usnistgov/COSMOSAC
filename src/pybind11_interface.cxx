@@ -79,18 +79,22 @@ void init_COSMO(py::module &m) {
         .def("get_psigma_mix", &AbstractCOSMOModel::get_psigma_mix)
         ;
 
+    typedef COSMO1::EigenArray EigenArray1;
     py::class_<COSMO1, AbstractCOSMOModel>(m, "COSMO1")
         .def(py::init<const std::vector<std::string> &, const ProfileDatabase &>())
         .def("get_Gamma", &COSMO1::get_Gamma)
-        .def("get_lngamma_resid", &COSMO1::get_lngamma_resid)
+         .def("get_lngamma_resid", py::overload_cast<double, const EigenArray1&>(&COSMO1::get_lngamma_resid, py::const_))
+         .def("get_lngamma_resid", py::overload_cast<std::size_t, double, const EigenArray1&>(&COSMO1::get_lngamma_resid, py::const_))
         .def("get_lngamma", &COSMO1::get_lngamma)
         .def("get_mutable_COSMO_constants", &COSMO1::get_mutable_COSMO_constants, py::return_value_policy::reference)
         ;
 
+    typedef COSMO3::EigenArray EigenArray;
     py::class_<COSMO3, AbstractCOSMOModel>(m, "COSMO3")
         .def(py::init<const std::vector<std::string> &, const ProfileDatabase &>())
         .def("get_Gamma", &COSMO3::get_Gamma)
-        .def("get_lngamma_resid", &COSMO3::get_lngamma_resid)
+        .def("get_lngamma_resid", py::overload_cast<double, const EigenArray&>(&COSMO3::get_lngamma_resid, py::const_))
+        .def("get_lngamma_resid", py::overload_cast<std::size_t, double, const EigenArray&>(&COSMO3::get_lngamma_resid, py::const_))
         .def("get_lngamma_disp", &COSMO3::get_lngamma_disp)
         .def("get_lngamma", &COSMO3::get_lngamma)
         .def("get_AA", &COSMO3::get_AA)

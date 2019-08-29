@@ -226,6 +226,16 @@ namespace COSMOSAC {
                 return m_fluids[i].A_COSMO_A2 / AEFFPRIME*(psigma*(lnGamma_mix - lnGammai)).sum();
             }
         }
+        EigenArray get_lngamma_resid(double T, const EigenArray& x) const
+        {
+            EigenArray lngamma(x.size());
+            EigenArray psigma_mix = get_psigma_mix(x);
+            EigenArray lnGamma_mix = get_Gamma(T, psigma_mix).log();
+            for (Eigen::Index i = 0; i < x.size(); ++i) {
+                lngamma(i) = get_lngamma_resid(i, T, lnGamma_mix);
+            }
+            return lngamma;
+        }
         EigenArray get_lngamma(double T, const EigenArray &x) const override {
             auto startTime = std::chrono::high_resolution_clock::now();
             EigenArray lngamma(x.size());
@@ -428,6 +438,24 @@ namespace COSMOSAC {
             double check_sum = psigmas.sum();
             EigenArray lnGammai = get_Gamma(T, psigmas).log();
             return A_i/AEFFPRIME*(psigmas*(lnGamma_mix - lnGammai)).sum();
+        }
+        /** 
+        This overload is a convenience overload, less computationally 
+        efficient, but simpler to use and more in keeping with the other 
+        contributions.  It does not require the lnGamma_mix to be pre-calculated
+        and passed into this function
+        */
+        EigenArray get_lngamma_resid(double T, const EigenArray& x) const
+        {
+            EigenArray lngamma(x.size());
+            EigenArray psigmas(3 * 51);
+            psigmas << get_psigma_mix(x, profile_type::NHB_PROFILE), get_psigma_mix(x, profile_type::OH_PROFILE), get_psigma_mix(x, profile_type::OT_PROFILE);
+            double check_sum = psigmas.sum();
+            EigenArray lnGamma_mix = get_Gamma(T, psigmas).log();
+            for (Eigen::Index i = 0; i < x.size(); ++i) {
+                lngamma(i) = get_lngamma_resid(i, T, lnGamma_mix);
+            }
+            return lngamma;
         }
         EigenArray get_lngamma_disp(const EigenArray &x) const {
             if (x.size() != 2){ throw std::invalid_argument("Multi-component mixtures not supported for dispersive contribution yet"); }
