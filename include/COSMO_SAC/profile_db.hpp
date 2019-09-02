@@ -82,9 +82,10 @@ struct VTFluidInfo {
     std::string numstring;
     std::string name;
     double V_COSMO_A3;
+    std::vector<std::string> elements;
 };
 void to_json(nlohmann::json& j, const VTFluidInfo& p) {
-    j = nlohmann::json{{"VTIndex", p.VTIndex}, {"numstring", p.numstring}, {"name", p.name},  {"V_COSMO_A3", p.V_COSMO_A3}};
+    j = nlohmann::json{{"VTIndex", p.VTIndex}, {"numstring", p.numstring}, {"name", p.name},  {"V_COSMO_A3", p.V_COSMO_A3},  {"elements", p.elements}};
 }
 void from_json(const nlohmann::json& j, VTFluidInfo& p) {
     j.at("VTIndex").get_to(p.VTIndex);
@@ -123,6 +124,7 @@ public:
             char num[5];
             snprintf(num, sizeof(num), "%04d", static_cast<int>(fluid.VTIndex));
             fluid.numstring = num;
+            fluid.elements = elements;
             m_VTdata[fluid.numstring] = fluid;
         }
     }
