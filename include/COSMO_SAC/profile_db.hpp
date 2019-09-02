@@ -107,7 +107,7 @@ public:
             lines = str_split(get_file_contents(tab_delimited_summary), "\r");
         }
         if (lines.size() == 1){
-            throw std::invalid_argument("Unable to match the line endings in file " + tab_delimited_summary)
+            throw std::invalid_argument("Unable to match the line endings in file " + tab_delimited_summary);
         }
         // Iterate over the lines, storing an entry for each one
         for (auto &&line : lines) {
