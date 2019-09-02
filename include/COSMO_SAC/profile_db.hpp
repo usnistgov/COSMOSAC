@@ -103,6 +103,12 @@ public:
     VirginiaTechProfileDatabase(const std::string &tab_delimited_summary, const std::string &dbpath) : m_dbpath(dbpath) {
         // First, read in the file of summary information
         auto lines = str_split(get_file_contents(tab_delimited_summary), "\n");
+        if (lines.size() == 1){
+            lines = str_split(get_file_contents(tab_delimited_summary), "\r");
+        }
+        if (lines.size() == 1){
+            throw std::invalid_argument("Unable to match the line endings in file " + tab_delimited_summary)
+        }
         // Iterate over the lines, storing an entry for each one
         for (auto &&line : lines) {
             VTFluidInfo fluid;
