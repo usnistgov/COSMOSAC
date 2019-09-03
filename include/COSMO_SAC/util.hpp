@@ -5,7 +5,9 @@
 #include <sstream>
 #include <locale>
 #include <vector>
+#include <functional>
 #include <stdexcept>
+#include <algorithm>
 
 namespace COSMOSAC{
 
@@ -17,7 +19,7 @@ struct delim : std::numpunct<char> {
 
 /** From CoolProp...
 */
-static double mystrtod(const std::string &s, char c = '.') {
+static double mystrtod(const std::string &s, const char c = '.') {
     std::stringstream ss(s); double f;
     ss.imbue(std::locale(ss.getloc(), new delim(c)));
     //ss.setf(std::ios::uppercase);
@@ -66,6 +68,22 @@ static std::vector<std::string> str_split(const std::string &s,
         o.push_back(s.substr(current, next - current));
     } while (next != std::string::npos);
     return o;
+}
+
+/// The following code for the trim functions was taken from http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
+    // trim from start
+static std::string& strlstrip(std::string& s) {
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+    return s;
+}
+// trim from end
+static std::string& strrstrip(std::string& s) {
+    s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+    return s;
+}
+// trim from both ends
+static std::string& strstrip(std::string& s) {
+    return strlstrip(strrstrip(s));
 }
 
 } /* namespace COSMOSAC */

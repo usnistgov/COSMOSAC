@@ -82,10 +82,9 @@ struct VTFluidInfo {
     std::string numstring;
     std::string name;
     double V_COSMO_A3;
-    std::vector<std::string> elements;
 };
 void to_json(nlohmann::json& j, const VTFluidInfo& p) {
-    j = nlohmann::json{{"VTIndex", p.VTIndex}, {"numstring", p.numstring}, {"name", p.name},  {"V_COSMO_A3", p.V_COSMO_A3},  {"elements", p.elements}};
+    j = nlohmann::json{{"VTIndex", p.VTIndex}, {"numstring", p.numstring}, {"name", p.name},  {"V_COSMO_A3", p.V_COSMO_A3}};
 }
 void from_json(const nlohmann::json& j, VTFluidInfo& p) {
     j.at("VTIndex").get_to(p.VTIndex);
@@ -114,7 +113,10 @@ public:
         for (auto &&line : lines) {
             VTFluidInfo fluid;
             if (line.empty()) { continue; }
-            auto elements = str_split(line, "\t");
+            auto elements = str_split(strstrip(line), "\t");
+            if (elements.size() < 6) {
+                throw std::invalid_argument("Need at least 6 entries in line");
+            }
             if (elements[0] == "Index No.") {
                 continue;
             }
@@ -124,8 +126,13 @@ public:
             char num[5];
             snprintf(num, sizeof(num), "%04d", static_cast<int>(fluid.VTIndex));
             fluid.numstring = num;
-            fluid.elements = elements;
-            m_VTdata[fluid.numstring] = fluid;
+            if (m_VTdata.find(fluid.numstring) != m_VTdata.end()) {
+                throw std::invalid_argument("Cannot have duplicate key: "+ fluid.numstring);
+            }
+            else{
+                m_VTdata[fluid.numstring] = fluid;
+            }
+            
         }
     }
     std::string normalize_identifier(const std::string &identifier) const override {
@@ -178,18 +185,6 @@ public:
         return j.dump(nspaces);
     }
 };
-
-/// The following code for the trim functions was taken from http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
-// trim from start
-inline std::string &strlstrip(std::string &s) {
-    s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
-    return s;
-}
-// trim from end
-inline std::string &strrstrip(std::string &s) {
-    s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
-    return s;
-}
 
 struct DelawareFluidInfo {
     std::size_t DelIndex;
