@@ -84,7 +84,13 @@ namespace COSMOSAC {
             return (log(phi_i_over_x_i) + z_coordination / 2 * q[i] * log(theta_i_over_phi_i)
                 + l[i] - phi_i_over_x_i * dot(x, l));
         }
-
+        EigenArray get_lngamma_comb(double T, const EigenArray &x) const {
+            EigenArray lngamma(x.size());
+            for (Eigen::Index i = 0; i < x.size(); ++i) {
+                lngamma(i) = get_lngamma_comb(T, x, i);
+            }
+            return lngamma;
+        }
         EigenArray get_psigma_mix(const EigenArray &z, profile_type type = profile_type::NHB_PROFILE) const {
             EigenArray psigma_mix(51); psigma_mix.fill(0);
             double xA = 0;
@@ -486,16 +492,7 @@ namespace COSMOSAC {
             return lngamma_dsp;
         }
         EigenArray get_lngamma(double T, const EigenArray &x) const override {
-            EigenArray lngamma(x.size());
-            EigenArray psigmas(3*51);
-            psigmas << get_psigma_mix(x, profile_type::NHB_PROFILE), get_psigma_mix(x, profile_type::OH_PROFILE), get_psigma_mix(x, profile_type::OT_PROFILE);
-            double check_sum = psigmas.sum();
-            EigenArray lnGamma_mix = get_Gamma(T, psigmas).log();
-            EigenArray lngamma_disp = get_lngamma_disp(x);
-            for (Eigen::Index i = 0; i < x.size(); ++i) {
-                lngamma(i) = get_lngamma_resid(i, T, lnGamma_mix) + get_lngamma_comb(T, x, i) + lngamma_disp(i);
-            }
-            return lngamma;
+            return get_lngamma_comb(T, x) + get_lngamma_resid(T, x) +  get_lngamma_disp(x);
         }
     };
 

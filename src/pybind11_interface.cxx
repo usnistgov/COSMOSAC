@@ -72,8 +72,10 @@ void init_COSMO(py::module &m) {
         .def("add_profile", &DelawareProfileDatabase::add_profile)
         .def("to_JSON", &DelawareProfileDatabase::to_JSON);
 
+    using EigenArrayA = AbstractCOSMOModel::EigenArray;
     py::class_<AbstractCOSMOModel >(m, "AbstractCOSMOModel")
-        .def("get_lngamma_comb", &AbstractCOSMOModel::get_lngamma_comb)
+        .def("get_lngamma_comb", (EigenArrayA (AbstractCOSMOModel::*)(double, const EigenArrayA&) const) &AbstractCOSMOModel::get_lngamma_comb)
+        .def("get_lngamma_comb", (double (AbstractCOSMOModel::*)(double, const EigenArrayA&, std::size_t) const) &AbstractCOSMOModel::get_lngamma_comb)
         .def("get_sigma_profiles", &AbstractCOSMOModel::get_sigma_profiles)
         .def("get_mutable_combinatorial_constants", &AbstractCOSMOModel::get_mutable_combinatorial_constants, py::return_value_policy::reference)
         .def("get_psigma_mix", &AbstractCOSMOModel::get_psigma_mix)
