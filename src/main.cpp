@@ -59,14 +59,14 @@ void testVT2005() {
     }
 
     // Build the evaluator class
-    COSMO1<double> COSMO(names, datadb);
+    COSMO1 COSMO(names, datadb);
 
     // The parameters at which we will evaluate
     double T = 298.15;
     Eigen::ArrayXd z(2); z.fill(0.0); z[1] = 1 - z[0];
-    COSMO1<double>::EigenArray51 psigma_mix = COSMO.get_psigma_mix(z);
+    COSMO1::EigenArray51 psigma_mix = COSMO.get_psigma_mix(z);
     // Carry out the calculation(s)
-    COSMO1<double>::EigenArray51 Gammafast, Gammaslow; 
+    COSMO1::EigenArray51 Gammafast, Gammaslow; 
     
     double r1=0,r2=0;
     auto startTime = std::chrono::high_resolution_clock::now();
@@ -100,7 +100,7 @@ int main() {
     }
 
     // Build the evaluator class
-    COSMO3<double> COSMO(names, datadbDel);
+    COSMO3 COSMO(names, datadbDel);
     
     // The parameters at which we will evaluate
     double T = 298.15;
