@@ -62,7 +62,7 @@ TEST_CASE("Test infinite dilution activity coefficients", "[setup]") {
         }
 
         // Build the evaluator class
-        COSMO3<double> COSMO(names, datadbDel);
+        COSMO3 COSMO(names, datadbDel);
         Eigen::ArrayXd z(2); z.fill(0.0); z[1] = 1 - z[0]; 
         
         // Combinatorial part
@@ -103,14 +103,14 @@ TEST_CASE("Test slow and fast Gamma are the same for COSMO1", "[Gamma]") {
     }
 
     // Build the evaluator class
-    COSMO1<double> COSMO(names, datadb);
+    COSMO1 COSMO(names, datadb);
 
     // The parameters at which we will evaluate
     double T = 298.15;
     Eigen::ArrayXd z(2); z.fill(0.0); z[1] = 1 - z[0];
 
     // Carry out the calculation(s)
-    std::vector<COSMO1<double>::EigenArray> outputs;
+    std::vector<COSMO1::EigenArray> outputs;
     for (auto fast : {true, false}){
         COSMO.get_mutable_COSMO_constants().fast_Gamma = fast;
         outputs.push_back(COSMO.get_lngamma(T, z));
@@ -135,14 +135,14 @@ TEST_CASE("Test slow and fast Gamma are the same for COSMO3", "[Gamma]") {
     }
 
     // Build the evaluator class
-    COSMO3<double> COSMO(names, datadbDel);
+    COSMO3 COSMO(names, datadbDel);
 
     // The parameters at which we will evaluate
     double T = 298.15;
     Eigen::ArrayXd z(2); z.fill(0.0); z[1] = 1 - z[0];
 
     // Carry out the calculation(s)
-    std::vector<COSMO1<double>::EigenArray> outputs;
+    std::vector<COSMO1::EigenArray> outputs;
     for (auto fast : { true, false }) {
         COSMO.get_mutable_COSMO_constants().fast_Gamma = fast;
         outputs.push_back(COSMO.get_lngamma(T, z));
@@ -167,16 +167,16 @@ TEST_CASE("Test slow and fast DELTAW are the same", "[Gamma]") {
     }
 
     // Build the evaluator class
-    COSMO3<double> COSMO(names, datadbDel);
+    COSMO3 COSMO(names, datadbDel);
     double T = 298.15; 
-    using profile_type = COSMOSAC::AbstractCOSMOModel<double>::profile_type;
+    using profile_type = COSMOSAC::AbstractCOSMOModel::profile_type;
     
     Eigen::Index ileft, w;
     std::tie(ileft, w) = COSMO.get_ileftw();
     std::vector<profile_type> types = { profile_type::NHB_PROFILE, profile_type::OH_PROFILE, profile_type::OT_PROFILE };
     for (auto i = 0; i < 3; ++i) {
         for (auto j = 0; j < 3; ++j) {
-            COSMO3<double>::EigenMatrix diff = COSMO.get_DELTAW(T, types[i], types[j]).array() - COSMO.get_DELTAW_fast(T, types[i], types[j]).array();
+            COSMO3::EigenMatrix diff = COSMO.get_DELTAW(T, types[i], types[j]).array() - COSMO.get_DELTAW_fast(T, types[i], types[j]).array();
             CHECK(diff.matrix().block(ileft, ileft, w, w).cwiseAbs().maxCoeff() < 1e-15);
         }
     }
