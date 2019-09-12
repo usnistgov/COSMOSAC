@@ -32,8 +32,8 @@ def calc_LNAC(*, method, dbname, names, composition, T):
     elif method in ['COSMOSAC-2010','COSMOSAC-dsp']:
         COSMO = cCOSMO.COSMO3(names, db)
 
-        # Specialize for DSP
-        if method  == 'COSMOSAC-dsp':
+        # Specialize for 2010, no dispersive contribution, but residual and combinatorial
+        if method  == 'COSMOSAC-2010':
             return COSMO.get_lngamma_comb(T, composition) + COSMO.get_lngamma_resid(T, composition)
     else:
         raise ValueError('Invalid method: ' + method)
