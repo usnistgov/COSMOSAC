@@ -84,6 +84,11 @@ namespace COSMOSAC {
             return (log(phi_i_over_x_i) + z_coordination / 2 * q[i] * log(theta_i_over_phi_i)
                 + l[i] - phi_i_over_x_i * dot(x, l));
         }
+        /**
+        The combinatorial part of ln(γ_i)
+
+        Returns the combinatorial parts for all components in one shot
+        */
         EigenArray get_lngamma_comb(double T, const EigenArray &x) const {
             EigenArray lngamma(x.size());
             for (Eigen::Index i = 0; i < x.size(); ++i) {
