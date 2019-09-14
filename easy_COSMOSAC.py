@@ -45,6 +45,10 @@ if __name__ == '__main__':
     for db in ['UD','VT']:
         for method in ['COSMOSAC-2002','COSMOSAC-2010','COSMOSAC-dsp']:
             try:
-                print(db, method, calc_LNAC(T=300, dbname=db, names=['ETHANOL','METHANOL'], composition = [0.3, 0.7], method=method))
+                names=['ETHANOL', 'METHANOL']
+                composition=[0.3, 0.7]
+                T=300
+                print(db, method,names,T,'K',composition, calc_LNAC(T=T, dbname=db, names = names, composition = composition, method=method))
+                #print(db, method, calc_LNAC(T=300, dbname=db, names=['ETHANOL','METHANOL'], composition = [0.3, 0.7], method=method))
             except BaseException as BE:
                 print(BE)
