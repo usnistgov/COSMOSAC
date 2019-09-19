@@ -1,7 +1,10 @@
-import cCOSMO
-import numpy as np
 import os
 import timeit
+import json
+
+import numpy as np
+
+import cCOSMO
 
 here = os.path.abspath(os.path.dirname(__file__))
 dbVT = cCOSMO.VirginiaTechProfileDatabase(
@@ -15,6 +18,18 @@ names = [ "METHANE", "ETHANE" ]
 for iden in names:
     db.add_profile(db.normalize_identifier(iden))
     dbVT.add_profile(dbVT.normalize_identifier(iden))
+
+# Use the Delaware database to create a dictionary mapping from 
+# name of each fluid name to the CAS #
+# 
+# Something analogous could be done with the VT database, though the keys differ slightly
+CAS_lookup = {meta['name']: meta['CAS'] for primary_key, meta in json.loads(db.to_JSON()).items()}
+
+# Make a list of CAS # for the fluids
+CASes = [CAS_lookup[fluid] for fluid in names]
+
+# Switch over to using the CAS# as the identifier rather than the name
+names = CASes[:]
 
 for COSMO in [cCOSMO.COSMO1(names, dbVT), cCOSMO.COSMO3(names, db)]:
     T = 400.15;
@@ -58,6 +73,7 @@ for COSMO in [cCOSMO.COSMO1(names, dbVT), cCOSMO.COSMO3(names, db)]:
     # print('Gamma_mix:', Gamma_mix)
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
+# Plot the profiles
 import matplotlib.pyplot as plt
 for i in names:
     prof = db.get_profile(db.normalize_identifier(i))

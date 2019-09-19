@@ -81,15 +81,17 @@ struct VTFluidInfo {
     int VTIndex;
     std::string numstring;
     std::string name;
+    std::string CAS;
     double V_COSMO_A3;
 };
 void to_json(nlohmann::json& j, const VTFluidInfo& p) {
-    j = nlohmann::json{{"VTIndex", p.VTIndex}, {"numstring", p.numstring}, {"name", p.name},  {"V_COSMO_A3", p.V_COSMO_A3}};
+    j = nlohmann::json{{"VTIndex", p.VTIndex}, {"numstring", p.numstring}, {"name", p.name}, {"CAS", p.CAS},  {"V_COSMO_A3", p.V_COSMO_A3}};
 }
 void from_json(const nlohmann::json& j, VTFluidInfo& p) {
     j.at("VTIndex").get_to(p.VTIndex);
     j.at("numstring").get_to(p.numstring);
     j.at("name").get_to(p.name);
+    j.at("CAS").get_to(p.CAS);
     j.at("V_COSMO_A3").get_to(p.V_COSMO_A3);
 }
 
@@ -121,7 +123,9 @@ public:
                 continue;
             }
             fluid.VTIndex = mystrtoi(elements[0]);
+            // Index 1 is a chemical formula, but non-standard form
             fluid.name = elements[2];
+            fluid.CAS = elements[3];
             fluid.V_COSMO_A3 = mystrtod(elements[5]);
             char num[5];
             snprintf(num, sizeof(num), "%04d", static_cast<int>(fluid.VTIndex));
@@ -143,6 +147,13 @@ public:
         for (auto &el : m_VTdata) {
             auto &fluid = el.second;
             if (fluid.name == identifier)
+            { 
+                // Construct the fluid identifier from the identifier that is provided
+                char num[5];
+                snprintf(num, sizeof(num), "%04d", static_cast<int>(fluid.VTIndex));
+                return num;
+            }
+            if (fluid.CAS == identifier)
             { 
                 // Construct the fluid identifier from the identifier that is provided
                 char num[5];
@@ -251,6 +262,10 @@ public:
         for (auto &el : m_Deldata) {
             auto &fluid = el.second;
             if (fluid.name == identifier)
+            {
+                return fluid.InChIKey;
+            }
+            if (fluid.CAS == identifier)
             {
                 return fluid.InChIKey;
             }
