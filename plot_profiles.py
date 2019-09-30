@@ -30,7 +30,7 @@ for iden in names:
 import matplotlib.pyplot as plt
 
 # Iterate over the databases
-for db,dbname in zip([dbVT, dbUD],['VT','UD']):
+for db, dbname in zip([dbVT, dbUD],['VT','UD']):
     # Iterate over the names
     for name, dashes in zip(names,[[2,2], []]):
         # Get the sigma profiles
@@ -48,4 +48,26 @@ plt.legend(loc='best')
 plt.xlabel(r'$\sigma$ / e/$\AA^2$')
 plt.ylabel(r'$p(\sigma)$ ')
 plt.savefig('methanol_ethanol_profiles.pdf')
+plt.close()
+
+# Iterate over the databases
+for db, dbname in zip([dbVT, dbUD],['VT','UD']):
+    # Iterate over the names
+    for name, dashes in zip(names,[[2,2], []]):
+        # Get the sigma profiles
+        profset = db.get_profile(db.normalize_identifier(name))
+        total_profile = 0.0
+        # Iterate over the profiles to be plotted
+        for key in ['nhb', 'oh', 'ot']:
+            profile = getattr(profset.profiles, key)
+            PA = np.sum(profile.psigmaA)
+            if PA > 0:
+                total_profile += profile.psigmaA
+        plt.plot(profset.profiles.nhb.sigma, total_profile/np.sum(total_profile), dashes=dashes, label=dbname+':'+name)
+
+# Labeling and saving
+plt.legend(loc='best')
+plt.xlabel(r'$\sigma$ / e/$\AA^2$')
+plt.ylabel(r'$p(\sigma)$ ')
+plt.savefig('methanol_ethanol_summed_profiles.pdf')
 plt.show()
