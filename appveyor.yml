@@ -1,0 +1,69 @@
+# Thanks to https://github.com/AndrewAnnex/SpiceyPy/blob/master/appveyor.yml for providing a lot of useful information
+build: false
+
+environment:
+  global:
+      WITH_COMPILER: "cmd /E:ON /V:ON /C .\\appveyor\\windows_sdk.cmd"
+
+  # This is an encrypted password for pushing to PYPI.  Encrypt the PW by going to Account (middle of the top bar) --> Encrypt YAML.  
+  # The encrypted PW is tied with the account used to encrypt it
+  TWINE_PASSWORD:
+    secure: Mf1UBAVDzEMWJoDEllN07g==
+  TWINE_USERNAME: belli
+
+  matrix:
+      - PYTHON: "C:\\Python37-x64"
+        APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+        PYTHON_VERSION: "3.7.x"
+        ARCH: "64"
+        PLAT_NAME: "win-amd64"
+        PY_TAG: "cp37"
+      - PYTHON: "C:\\Python37-x64"
+        APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+        PYTHON_VERSION: "3.7.x"
+        ARCH: "64"
+        PLAT_NAME: "win-amd64"
+        PY_TAG: "cp37"
+      - PYTHON: "C:\\Python37-x64"
+        APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+        PYTHON_VERSION: "3.7.x"
+        ARCH: "64"
+        PLAT_NAME: "win-amd64"
+        PY_TAG: "cp37"
+      - PYTHON: "C:\\Python36-x64"
+        APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+        PYTHON_VERSION: "3.6.x"
+        ARCH: "64"
+        WINDOWS_SDK_VERSION: "v7.1"
+        PLAT_NAME: "win-amd64"
+        PY_TAG: "cp36"
+        compiler: msvc-15
+
+platform:
+    -x64
+
+install:
+
+  # Use my pip
+  - set PATH=%PYTHON%\\scripts;%PATH%
+
+  # Submodules (shallow)
+  - git submodule update --recommend-shallow --init --recursive
+
+  # Things needed to build/upload
+  - pip install wheel twine
+
+test_script:
+    - "%PYTHON%/python --version"
+
+after_test:
+  - ECHO "BUILDING WHEELS..."
+  - "%PYTHON%/python setup.py bdist_wheel --plat-name=%PLAT_NAME%"
+  
+artifacts:
+  - path: dist\*
+    name: pypi_artifacts
+
+# Upload to pypi if on a tag
+deploy_script:
+  - ps: If ($env:APPVEYOR_REPO_TAG -eq "true") { Invoke-Expression "twine upload --verbose dist/*.whl" 2>$null } Else { write-output "Not on a tag, won't deploy to pypi"}
