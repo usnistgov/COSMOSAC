@@ -69,7 +69,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Visualize the patches and atoms in a COSMO file')
     parser.add_argument('--name', type=str, required=True, nargs=1, help='The name or InChI key for the molecule')
     parser.add_argument('--ofname', type=str, required=True, nargs=1, help='The path of the output file')
-    parser.add_argument('--bgcolor', type=str, required=False, nargs=1, help='The background color for the scene, specified as a string; 0xffffff would be white')
+    parser.add_argument('--bgcolor', type=str, required=False, nargs=1, default='0xffffff', help='The background color for the scene, specified as a string; 0xffffff would be white')
     parser.add_argument('--overwrite', action='store_const',
                         const=True, default=False,
                         help='overwrite the output file without asking')
@@ -77,8 +77,8 @@ if __name__ == '__main__':
                         const=True, default=False,
                         help="Don't launch the file")
 
-    # args = parser.parse_args()
-    args = parser.parse_args('--name NEOPENTANE --ofname SAC-vis.html --bgcolor 0x1199ff --overwrite'.split(' '))  # For testing
+    args = parser.parse_args()
+    # args = parser.parse_args('--name NEOPENTANE --ofname SAC-vis.html --overwrite'.split(' '))  # For testing
     write_and_load(name = args.name[0], 
                    ofname = args.ofname[0], 
                    overwrite = args.overwrite, 
