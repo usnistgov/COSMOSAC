@@ -40,6 +40,13 @@ ImportError: /home/theuser/anaconda3/bin/../lib/libstdc++.so.6: version `GLIBCXX
 ```
 it can be sometimes fixed by installing ``libgcc`` with conda: ``conda install libgcc``.  [This is due to an issue in Anaconda](https://github.com/ContinuumIO/anaconda-issues/issues/483)
 
+If on OSX, if you install G++/GCC from homebrew (recommended), you may want to set the path to the compilers before you compile.  Something like this should do it:
+```
+export CC=/usr/local/bin/gcc-10
+export CXX=/usr/local/bin/g++-10
+```
+then following the normal instructions
+
 ### From the git repository
 
 Clone (recursively!) and run the ``setup.py`` script (the ``--shallow-submodules`` flag is optional, and checks out only the most recent commit of the submodules, saving rather a lot of data for Eigen)
