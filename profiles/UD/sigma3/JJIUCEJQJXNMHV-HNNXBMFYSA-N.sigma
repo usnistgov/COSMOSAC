@@ -1,4 +1,4 @@
-# meta: {"name": "VX", "area [A^2]": 297.28569, "volume [A^3]": 357.29754, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "JJIUCEJQJXNMHV-HNNXBMFYSA-N"}
+# meta: {"name": "VX", "area [A^2]": 297.28569, "volume [A^3]": 357.29754, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "JJIUCEJQJXNMHV-HNNXBMFYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -33,7 +33,7 @@
 0.004 6.93707838962976e+00
 0.005 2.57074810969172e+00
 0.006 3.13602471767526e+00
-0.007 3.58332825517271e+00
+0.007 3.58332825517270e+00
 0.008 3.46307238385664e+00
 0.009 1.63532711669742e+00
 0.010 1.43858957106937e+00
@@ -140,7 +140,7 @@
 0.009 6.27146359052239e-01
 0.010 1.91682750794186e+00
 0.011 2.57766149963047e+00
-0.012 8.37474273098810e-01
+0.012 8.37474273098809e-01
 0.013 1.15733345506210e+00
 0.014 2.25831998441910e+00
 0.015 2.47501201639680e+00

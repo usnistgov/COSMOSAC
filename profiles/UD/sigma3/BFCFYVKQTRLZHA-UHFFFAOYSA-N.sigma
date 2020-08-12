@@ -1,4 +1,4 @@
-# meta: {"name": "O-CHLORONITROBENZENE", "area [A^2]": 164.92128, "volume [A^3]": 161.87349, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 80.24237000000001, "standard_INCHIKEY": "BFCFYVKQTRLZHA-UHFFFAOYSA-N"}
+# meta: {"name": "O-CHLORONITROBENZENE", "area [A^2]": 164.92128, "volume [A^3]": 161.87349, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 80.24237000000001, "standard_INCHIKEY": "BFCFYVKQTRLZHA-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -16,7 +16,7 @@
 -0.013 0.00000000000000e+00
 -0.012 0.00000000000000e+00
 -0.011 0.00000000000000e+00
--0.010 8.86604194356508e-02
+-0.010 8.86604194356500e-02
 -0.009 3.49696484713880e+00
 -0.008 1.00416319722017e+01
 -0.007 8.51394170171600e+00

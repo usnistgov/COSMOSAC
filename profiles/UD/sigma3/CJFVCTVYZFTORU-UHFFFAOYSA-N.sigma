@@ -1,4 +1,4 @@
-# meta: {"name": "METHYL_T-BUTYL_SULFIDE", "area [A^2]": 150.76183, "volume [A^3]": 152.52967, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "CJFVCTVYZFTORU-UHFFFAOYSA-N"}
+# meta: {"name": "METHYL_T-BUTYL_SULFIDE", "area [A^2]": 150.76183, "volume [A^3]": 152.52967, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": null, "standard_INCHIKEY": "CJFVCTVYZFTORU-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -21,7 +21,7 @@
 -0.008 5.14037181271850e-03
 -0.007 1.15146221823779e+00
 -0.006 3.09029642590310e+00
--0.005 7.25499561102252e+00
+-0.005 7.25499561102251e+00
 -0.004 1.73984226847386e+01
 -0.003 1.74208662381249e+01
 -0.002 1.83829944609378e+01

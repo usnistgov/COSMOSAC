@@ -1,4 +1,4 @@
-# meta: {"name": "NORETHINDRONE-ENANTHATE", "area [A^2]": 449.50001, "volume [A^3]": 540.50455, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 103.5085033333333, "standard_INCHIKEY": "APTGJECXMIKIET-AROXNORKSA-N"}
+# meta: {"name": "NORETHINDRONE-ENANTHATE", "area [A^2]": 449.50001, "volume [A^3]": 540.50455, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 103.5085033333333, "standard_INCHIKEY": "APTGJECXMIKIET-AROXNORKSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -18,7 +18,7 @@
 -0.011 1.70036999117389e+00
 -0.010 1.95455471864730e+00
 -0.009 7.02415290178807e-01
--0.008 8.39232731222925e-01
+-0.008 8.39232731222926e-01
 -0.007 6.96668448403667e-01
 -0.006 7.15097947369117e+00
 -0.005 1.98523060241329e+01

@@ -1,4 +1,4 @@
-# meta: {"name": "1,1,1,2,3,4,4,5,5,5-Decafluoropentane_[R43-10mee", "area [A^2]": 191.19866, "volume [A^3]": 204.03022, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 73.85529999999997, "standard_INCHIKEY": "RIQRGMUSBYGDBL-NCGGTJAESA-N"}
+# meta: {"name": "1,1,1,2,3,4,4,5,5,5-Decafluoropentane_[R43-10mee", "area [A^2]": 191.19866, "volume [A^3]": 204.03022, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 73.85529999999997, "standard_INCHIKEY": "RIQRGMUSBYGDBL-NCGGTJAESA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -17,7 +17,7 @@
 -0.012 2.25848094691865e+00
 -0.011 2.76675886496542e+00
 -0.010 2.03701567203426e+00
--0.009 8.62760639722858e-01
+-0.009 8.62760639722857e-01
 -0.008 9.41502782250868e-01
 -0.007 2.43891376587647e-01
 -0.006 7.95740155840380e-01

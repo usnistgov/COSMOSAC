@@ -1,4 +1,4 @@
-# meta: {"name": "PYRAZINE", "area [A^2]": 112.81654, "volume [A^3]": 100.44585, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 106.51893333333334, "standard_INCHIKEY": "KYQCOXFCLRTKLS-UHFFFAOYSA-N"}
+# meta: {"name": "PYRAZINE", "area [A^2]": 112.81654, "volume [A^3]": 100.44585, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 106.51893333333334, "standard_INCHIKEY": "KYQCOXFCLRTKLS-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -42,7 +42,7 @@
 0.013 2.97367697127888e-01
 0.014 3.22404294499132e-01
 0.015 1.20534635621908e-01
-0.016 3.80811215884631e-02
+0.016 3.80811215884630e-02
 0.017 0.00000000000000e+00
 0.018 0.00000000000000e+00
 0.019 0.00000000000000e+00

@@ -1,4 +1,4 @@
-# meta: {"name": "THIACYCLOPROPANE", "area [A^2]": 94.42097, "volume [A^3]": 79.36236, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "VOVUARRWDCVURC-UHFFFAOYSA-N"}
+# meta: {"name": "THIACYCLOPROPANE", "area [A^2]": 94.42097, "volume [A^3]": 79.36236, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": null, "standard_INCHIKEY": "VOVUARRWDCVURC-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -37,8 +37,8 @@
 0.008 2.44368936108391e+00
 0.009 4.06568149757948e+00
 0.010 2.54144545959267e+00
-0.011 9.58350534779077e-01
-0.012 1.02398679980970e+00
+0.011 9.58350534779075e-01
+0.012 1.02398679980971e+00
 0.013 0.00000000000000e+00
 0.014 0.00000000000000e+00
 0.015 0.00000000000000e+00

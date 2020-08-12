@@ -1,4 +1,4 @@
-# meta: {"name": "TRANS-3-HEXENE", "area [A^2]": 153.03339, "volume [A^3]": 139.33598, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 116.28986666666668, "standard_INCHIKEY": "ZQDPJFUHLCOCRG-AATRIKPKSA-N"}
+# meta: {"name": "TRANS-3-HEXENE", "area [A^2]": 153.03339, "volume [A^3]": 139.33598, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 116.28986666666668, "standard_INCHIKEY": "ZQDPJFUHLCOCRG-AATRIKPKSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -23,7 +23,7 @@
 -0.006 0.00000000000000e+00
 -0.005 4.00785689345733e-01
 -0.004 9.33849589188834e+00
--0.003 1.97401347127346e+01
+-0.003 1.97401347127345e+01
 -0.002 2.37861997472135e+01
 -0.001 2.05286999176577e+01
 0.000 1.94510259230094e+01

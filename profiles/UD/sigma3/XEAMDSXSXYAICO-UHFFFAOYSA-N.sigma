@@ -1,4 +1,4 @@
-# meta: {"name": "N-HEPTYL_FORMATE", "area [A^2]": 212.97688, "volume [A^3]": 207.51643, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 101.19446000000002, "standard_INCHIKEY": "XEAMDSXSXYAICO-UHFFFAOYSA-N"}
+# meta: {"name": "N-HEPTYL_FORMATE", "area [A^2]": 212.97688, "volume [A^3]": 207.51643, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 101.19446000000002, "standard_INCHIKEY": "XEAMDSXSXYAICO-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -34,7 +34,7 @@
 0.005 1.65961105822829e+00
 0.006 2.03652385673451e+00
 0.007 1.59109706008828e+00
-0.008 1.50197345308805e+00
+0.008 1.50197345308806e+00
 0.009 1.36581723240397e+00
 0.010 1.60507014653297e+00
 0.011 1.40703102141136e+00

@@ -411,6 +411,22 @@ class Dmol3COSMOParser(object):
         if invalid_atom:
             dispersive_molecule = np.nan
 
+        # Determine the HB-DONOR-ACCEPTOR or HB-ACCEPTOR flags
+        possble_Hbonders = ['O', 'N', 'F']
+        if any([(atom in set(self.df_atom.atom)) for atom in possble_Hbonders]):
+            Hbond = False
+            for i in range(len(self.df_atom)):
+                atom_name_i = self.df_atom.atom.iloc[i]
+                if atom_name_i in possble_Hbonders:
+                    bonds = self.get_bonds(i)
+                    js, atom_name_js = zip(*bonds)
+                    if 'H' in atom_name_js:
+                        Hbond = True
+            if not Hbond:
+                dispersion_flag = 'HB-ACCEPTOR'
+            else:
+                dispersion_flag = 'HB-DONOR-ACCEPTOR'
+
         return DispersiveValues(dispersion_flag, dispersive_molecule, Nbonds, has_COOH)
 
     def average_sigmas(self, sigmavals):
@@ -526,15 +542,8 @@ class Dmol3COSMOParser(object):
             elif self.disp.has_COOH:
                 dispersion_flag = 'COOH'
             else:
-                mask = (psigmaA_nhb > 1e-10)
-                minsigma = np.min(sigmas[mask])
-                maxsigma = np.max(sigmas[mask])
-                sigma_hb = meta['sigma_hb [e/A^2]']
-                if maxsigma > sigma_hb:
-                    if minsigma > -sigma_hb:
-                        dispersion_flag = 'HB-ACCEPTOR'
-                    else:
-                        dispersion_flag = 'HB-DONOR-ACCEPTOR'
+                dispersion_flag = self.disp.dispersion_flag
+
             meta['disp. flag'] = dispersion_flag
             meta['disp. e/kB [K]'] = self.disp.dispersive_molecule
             # print('cumulative time after reweighting', timeit.default_timer()-tic,'s')
@@ -588,8 +597,8 @@ if __name__ == '__main__':
     parser.add_argument('--n', type=int, nargs=1, required=True, choices=[1,3], help='The number of profiles to generate, either 1 or 3')
     parser.add_argument('--averaging', type=str, nargs=1, required=True, choices=['Hsieh','Mullins'], help="The scheme used to do averaging of profiles, either 'Mullins' to use f_decay = 1 and r_av = 0.8176300195 A or 'Hsieh' to use f_decay = 3.57 and r_av = sqrt(7.25/pi)")
 
-    # args = parser.parse_args()
-    args = parser.parse_args('--n 3 --averaging Mullins --inpath UD/cosmo/UFHFLCQGNIYNRP-UHFFFAOYSA-N.cosmo --outpath UFHFLCQGNIYNRP-UHFFFAOYSA-N.sigma'.split(' '))  # For testing
+    args = parser.parse_args()
+    # args = parser.parse_args('--n 3 --averaging Mullins --inpath UD/cosmo/ZPTVNYMJQHSSEA-UHFFFAOYSA-N.cosmo --outpath ZPTVNYMJQHSSEA-UHFFFAOYSA-N.sigma'.split(' '))  # For testing
 
     try:
         dmol = read_Dmol3(inpath = args.inpath[0], num_profiles=args.n[0], averaging=args.averaging[0])

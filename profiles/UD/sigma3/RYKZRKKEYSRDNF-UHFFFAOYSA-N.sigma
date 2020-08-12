@@ -1,4 +1,4 @@
-# meta: {"name": "2-ETHYL-1-BUTENE", "area [A^2]": 145.85957, "volume [A^3]": 141.5364, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 116.28986666666667, "standard_INCHIKEY": "RYKZRKKEYSRDNF-UHFFFAOYSA-N"}
+# meta: {"name": "2-ETHYL-1-BUTENE", "area [A^2]": 145.85957, "volume [A^3]": 141.5364, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 116.28986666666667, "standard_INCHIKEY": "RYKZRKKEYSRDNF-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -28,7 +28,7 @@
 -0.001 1.53471501729359e+01
 0.000 1.73484675567055e+01
 0.001 1.55258978005538e+01
-0.002 1.82738228747546e+01
+0.002 1.82738228747547e+01
 0.003 6.49241132807302e+00
 0.004 3.11331283577414e+00
 0.005 3.51313980716724e+00

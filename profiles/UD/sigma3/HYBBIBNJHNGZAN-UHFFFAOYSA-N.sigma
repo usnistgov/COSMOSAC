@@ -1,4 +1,4 @@
-# meta: {"name": "FURFURAL", "area [A^2]": 127.58215, "volume [A^3]": 115.00196, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 95.98407142857143, "standard_INCHIKEY": "HYBBIBNJHNGZAN-UHFFFAOYSA-N"}
+# meta: {"name": "FURFURAL", "area [A^2]": 127.58215, "volume [A^3]": 115.00196, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 95.98407142857143, "standard_INCHIKEY": "HYBBIBNJHNGZAN-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -24,7 +24,7 @@
 -0.005 5.51854965003397e+00
 -0.004 4.64895738637216e+00
 -0.003 6.76570481386867e+00
--0.002 6.83172630651161e+00
+-0.002 6.83172630651162e+00
 -0.001 6.01110228540670e+00
 0.000 7.90746369524403e+00
 0.001 1.15464346869650e+01
@@ -140,7 +140,7 @@
 0.009 1.57059096642108e+00
 0.010 2.10215860942368e+00
 0.011 3.77534877697256e+00
-0.012 2.59608816467621e+00
+0.012 2.59608816467622e+00
 0.013 2.48746575888994e+00
 0.014 6.90179881970870e-01
 0.015 0.00000000000000e+00

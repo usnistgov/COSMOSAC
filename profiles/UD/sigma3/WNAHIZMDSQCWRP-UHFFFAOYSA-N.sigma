@@ -1,4 +1,4 @@
-# meta: {"name": "N-DODECYL_MERCAPTAN", "area [A^2]": 302.22392, "volume [A^3]": 308.40556, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "WNAHIZMDSQCWRP-UHFFFAOYSA-N"}
+# meta: {"name": "N-DODECYL_MERCAPTAN", "area [A^2]": 302.22392, "volume [A^3]": 308.40556, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": null, "standard_INCHIKEY": "WNAHIZMDSQCWRP-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -16,8 +16,8 @@
 -0.013 0.00000000000000e+00
 -0.012 0.00000000000000e+00
 -0.011 0.00000000000000e+00
--0.010 5.91416116894702e-02
--0.009 9.65798199458907e-01
+-0.010 5.91416116894696e-02
+-0.009 9.65798199458908e-01
 -0.008 1.46628670983620e+00
 -0.007 1.96023728400535e+00
 -0.006 4.13012159794519e+00

@@ -1,4 +1,4 @@
-# meta: {"name": "N-DODECYLBENZENE", "area [A^2]": 356.62924, "volume [A^3]": 370.92396, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 116.28986666666664, "standard_INCHIKEY": "KWKXNDCHNDYVRT-UHFFFAOYSA-N"}
+# meta: {"name": "N-DODECYLBENZENE", "area [A^2]": 356.62924, "volume [A^3]": 370.92396, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 116.28986666666664, "standard_INCHIKEY": "KWKXNDCHNDYVRT-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -27,7 +27,7 @@
 -0.002 5.44201628377628e+01
 -0.001 6.03658096475389e+01
 0.000 4.85488533210915e+01
-0.001 4.27591865881848e+01
+0.001 4.27591865881847e+01
 0.002 2.64121535178688e+01
 0.003 2.93378659513918e+01
 0.004 7.76020346904550e+00
