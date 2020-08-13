@@ -1,4 +1,4 @@
-# meta: {"name": "TRANS-DICYANO-1-BUTENE", "area [A^2]": 163.71874, "volume [A^3]": 150.19223, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 102.22462500000002, "standard_INCHIKEY": "ZQOHAQBXINVHHC-HNQUOIGGSA-N"}
+# meta: {"name": "TRANS-DICYANO-1-BUTENE", "area [A^2]": 163.71874, "volume [A^3]": 150.19223, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 102.22462500000002, "standard_INCHIKEY": "ZQOHAQBXINVHHC-HNQUOIGGSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00

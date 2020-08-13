@@ -1,4 +1,4 @@
-# meta: {"name": "1-NITROBUTANE", "area [A^2]": 147.06854, "volume [A^3]": 134.80905, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 65.16992857142857, "standard_INCHIKEY": "NALZTFARIYUCBY-UHFFFAOYSA-N"}
+# meta: {"name": "1-NITROBUTANE", "area [A^2]": 147.06854, "volume [A^3]": 134.80905, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 65.16992857142857, "standard_INCHIKEY": "NALZTFARIYUCBY-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -18,7 +18,7 @@
 -0.011 0.00000000000000e+00
 -0.010 3.79181250582708e-01
 -0.009 4.37104108914325e+00
--0.008 4.83498306684342e+00
+-0.008 4.83498306684341e+00
 -0.007 4.60668930673278e+00
 -0.006 3.71719354430981e+00
 -0.005 6.17224709538480e+00

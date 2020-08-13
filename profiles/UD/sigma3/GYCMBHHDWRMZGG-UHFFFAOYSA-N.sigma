@@ -1,4 +1,4 @@
-# meta: {"name": "METHACRYLONITRILE", "area [A^2]": 117.30821, "volume [A^3]": 101.70373, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 105.27270000000001, "standard_INCHIKEY": "GYCMBHHDWRMZGG-UHFFFAOYSA-N"}
+# meta: {"name": "METHACRYLONITRILE", "area [A^2]": 117.30821, "volume [A^3]": 101.70373, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 105.27270000000001, "standard_INCHIKEY": "GYCMBHHDWRMZGG-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -134,7 +134,7 @@
 0.003 0.00000000000000e+00
 0.004 0.00000000000000e+00
 0.005 1.50525623805701e-02
-0.006 6.14646486553597e-01
+0.006 6.14646486553596e-01
 0.007 8.39969282307605e-01
 0.008 2.14084970175226e+00
 0.009 2.58181379122118e+00

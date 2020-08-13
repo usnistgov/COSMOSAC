@@ -1,4 +1,4 @@
-# meta: {"name": "2-Methylfuran", "area [A^2]": 122.48551, "volume [A^3]": 109.28363, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 113.53011666666669, "standard_INCHIKEY": "VQKFNUFAXTZWDK-UHFFFAOYSA-N"}
+# meta: {"name": "2-Methylfuran", "area [A^2]": 122.48551, "volume [A^3]": 109.28363, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 113.53011666666669, "standard_INCHIKEY": "VQKFNUFAXTZWDK-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -134,7 +134,7 @@
 0.003 3.63004663136349e-02
 0.004 1.52362010645151e-01
 0.005 4.95333422610524e-01
-0.006 7.45390169522743e-01
+0.006 7.45390169522742e-01
 0.007 6.77657253091386e-01
 0.008 1.03853889870444e+00
 0.009 6.02032241440620e-01

@@ -1,4 +1,4 @@
-# meta: {"name": "TRICHLOROFLUOROMETHANE", "area [A^2]": 123.13157, "volume [A^3]": 113.60376, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 96.27886, "standard_INCHIKEY": "CYRMSUTZVYGINF-UHFFFAOYSA-N"}
+# meta: {"name": "TRICHLOROFLUOROMETHANE", "area [A^2]": 123.13157, "volume [A^3]": 113.60376, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 96.27886, "standard_INCHIKEY": "CYRMSUTZVYGINF-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00

@@ -1,4 +1,4 @@
-# meta: {"name": "BETA-PROPIOLACTONE", "area [A^2]": 101.73066, "volume [A^3]": 85.17453, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 86.68661999999999, "standard_INCHIKEY": "VEZXCJBBBCKRPI-UHFFFAOYSA-N"}
+# meta: {"name": "BETA-PROPIOLACTONE", "area [A^2]": 101.73066, "volume [A^3]": 85.17453, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 86.68661999999999, "standard_INCHIKEY": "VEZXCJBBBCKRPI-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -34,7 +34,7 @@
 0.005 1.88568699424151e+00
 0.006 2.62285021553092e+00
 0.007 2.13217215721373e+00
-0.008 2.12348618647653e+00
+0.008 2.12348618647652e+00
 0.009 2.78693756791105e+00
 0.010 2.93365937829926e+00
 0.011 1.17822947645812e+00
@@ -130,7 +130,7 @@
 -0.001 0.00000000000000e+00
 0.000 0.00000000000000e+00
 0.001 1.64499973676787e-04
-0.002 7.98310440401853e-03
+0.002 7.98310440401854e-03
 0.003 1.34521657267152e-01
 0.004 4.89151516129705e-02
 0.005 3.77211164769042e-01

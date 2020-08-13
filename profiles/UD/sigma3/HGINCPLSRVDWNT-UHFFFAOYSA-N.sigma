@@ -1,4 +1,4 @@
-# meta: {"name": "ACROLEIN", "area [A^2]": 98.16134, "volume [A^3]": 80.76203, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 85.335025, "standard_INCHIKEY": "HGINCPLSRVDWNT-UHFFFAOYSA-N"}
+# meta: {"name": "ACROLEIN", "area [A^2]": 98.16134, "volume [A^3]": 80.76203, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 85.335025, "standard_INCHIKEY": "HGINCPLSRVDWNT-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -38,7 +38,7 @@
 0.009 1.14514136127733e+00
 0.010 1.47462785860458e+00
 0.011 1.25794650246835e+00
-0.012 6.18453237755204e-01
+0.012 6.18453237755205e-01
 0.013 4.08094526102206e-01
 0.014 7.35142933176826e-02
 0.015 0.00000000000000e+00
@@ -134,7 +134,7 @@
 0.003 0.00000000000000e+00
 0.004 6.32614477098158e-04
 0.005 9.77557209155829e-02
-0.006 1.78760112931834e-01
+0.006 1.78760112931833e-01
 0.007 5.81761086803563e-01
 0.008 9.21580672552061e-01
 0.009 1.47193735328251e+00

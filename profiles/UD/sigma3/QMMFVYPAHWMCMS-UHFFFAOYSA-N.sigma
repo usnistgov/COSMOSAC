@@ -1,4 +1,4 @@
-# meta: {"name": "DIMETHYL_SULFIDE", "area [A^2]": 103.40698, "volume [A^3]": 88.68012, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "QMMFVYPAHWMCMS-UHFFFAOYSA-N"}
+# meta: {"name": "DIMETHYL_SULFIDE", "area [A^2]": 103.40698, "volume [A^3]": 88.68012, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": null, "standard_INCHIKEY": "QMMFVYPAHWMCMS-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -20,7 +20,7 @@
 -0.009 0.00000000000000e+00
 -0.008 2.76417157152451e-02
 -0.007 2.58187735472871e+00
--0.006 5.74204821917376e+00
+-0.006 5.74204821917377e+00
 -0.005 9.72333129582240e+00
 -0.004 1.24646613487672e+01
 -0.003 6.91818635568874e+00

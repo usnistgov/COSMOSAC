@@ -1,4 +1,4 @@
-# meta: {"name": "2-Cyanoethyl_acetate", "area [A^2]": 159.3393, "volume [A^3]": 145.07763, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 90.60832500000001, "standard_INCHIKEY": "IJJJSNBMFDDFBC-UHFFFAOYSA-N"}
+# meta: {"name": "2-Cyanoethyl_acetate", "area [A^2]": 159.3393, "volume [A^3]": 145.07763, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 90.60832500000001, "standard_INCHIKEY": "IJJJSNBMFDDFBC-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -32,7 +32,7 @@
 0.003 2.48716257338938e+00
 0.004 3.27784421929195e+00
 0.005 2.65664080770730e+00
-0.006 3.13385804501017e+00
+0.006 3.13385804501016e+00
 0.007 2.52426871179230e+00
 0.008 3.81030202567553e+00
 0.009 2.97203114477702e+00

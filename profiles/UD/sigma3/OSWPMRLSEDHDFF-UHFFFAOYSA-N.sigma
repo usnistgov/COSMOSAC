@@ -1,4 +1,4 @@
-# meta: {"name": "METHYL_SALICYLATE", "area [A^2]": 179.72646, "volume [A^3]": 176.04921, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 94.790575, "standard_INCHIKEY": "OSWPMRLSEDHDFF-UHFFFAOYSA-N"}
+# meta: {"name": "METHYL_SALICYLATE", "area [A^2]": 179.72646, "volume [A^3]": 176.04921, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 94.790575, "standard_INCHIKEY": "OSWPMRLSEDHDFF-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -133,8 +133,8 @@
 0.002 8.22436798837193e-02
 0.003 1.95536902312603e-01
 0.004 4.71814458434223e-01
-0.005 9.99872133066204e-01
-0.006 5.03051438786265e-01
+0.005 9.99872133066205e-01
+0.006 5.03051438786264e-01
 0.007 4.39229409684108e-01
 0.008 1.32619045238110e+00
 0.009 1.01582700174787e+00

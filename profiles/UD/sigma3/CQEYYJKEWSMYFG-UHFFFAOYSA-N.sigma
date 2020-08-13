@@ -1,4 +1,4 @@
-# meta: {"name": "N-BUTYL_ACRYLATE", "area [A^2]": 188.19151, "volume [A^3]": 177.69541, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 99.9741888888889, "standard_INCHIKEY": "CQEYYJKEWSMYFG-UHFFFAOYSA-N"}
+# meta: {"name": "N-BUTYL_ACRYLATE", "area [A^2]": 188.19151, "volume [A^3]": 177.69541, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 99.9741888888889, "standard_INCHIKEY": "CQEYYJKEWSMYFG-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -17,7 +17,7 @@
 -0.012 0.00000000000000e+00
 -0.011 0.00000000000000e+00
 -0.010 0.00000000000000e+00
--0.009 6.16835361355867e-02
+-0.009 6.16835361355875e-02
 -0.008 2.30897985559639e+00
 -0.007 5.27008751320399e+00
 -0.006 6.56903376704837e+00

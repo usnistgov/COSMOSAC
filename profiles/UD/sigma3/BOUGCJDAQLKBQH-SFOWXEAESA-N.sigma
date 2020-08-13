@@ -1,4 +1,4 @@
-# meta: {"name": "2-CHLORO-1,1,1,2-TETRAFLUOROETHANE", "area [A^2]": 124.46894, "volume [A^3]": 114.97917, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 78.1978857142857, "standard_INCHIKEY": "BOUGCJDAQLKBQH-SFOWXEAESA-N"}
+# meta: {"name": "2-CHLORO-1,1,1,2-TETRAFLUOROETHANE", "area [A^2]": 124.46894, "volume [A^3]": 114.97917, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 78.1978857142857, "standard_INCHIKEY": "BOUGCJDAQLKBQH-SFOWXEAESA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -12,7 +12,7 @@
 -0.017 0.00000000000000e+00
 -0.016 0.00000000000000e+00
 -0.015 0.00000000000000e+00
--0.014 8.10287545957443e-01
+-0.014 8.10287545957441e-01
 -0.013 3.36978633734597e+00
 -0.012 1.47542206205436e+00
 -0.011 1.72543766386340e+00

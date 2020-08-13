@@ -1,4 +1,4 @@
-# meta: {"name": "2-METHYLTHIOPHENE", "area [A^2]": 133.3489, "volume [A^3]": 124.40839, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "XQQBUAPQHNYYRS-UHFFFAOYSA-N"}
+# meta: {"name": "2-METHYLTHIOPHENE", "area [A^2]": 133.3489, "volume [A^3]": 124.40839, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": null, "standard_INCHIKEY": "XQQBUAPQHNYYRS-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -34,7 +34,7 @@
 0.005 7.51380292844406e+00
 0.006 8.58055550587524e+00
 0.007 5.85221538737355e+00
-0.008 4.47874649279303e+00
+0.008 4.47874649279304e+00
 0.009 4.72944231238231e-01
 0.010 0.00000000000000e+00
 0.011 0.00000000000000e+00

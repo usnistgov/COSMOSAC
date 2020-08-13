@@ -1,4 +1,4 @@
-# meta: {"name": "CAFFEINE", "area [A^2]": 209.41456, "volume [A^3]": 219.22962, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 74.52994285714286, "standard_INCHIKEY": "RYYVLZVUVIJVGH-UHFFFAOYSA-N"}
+# meta: {"name": "CAFFEINE", "area [A^2]": 209.41456, "volume [A^3]": 219.22962, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 74.52994285714286, "standard_INCHIKEY": "RYYVLZVUVIJVGH-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -37,7 +37,7 @@
 0.008 2.30033819970320e+00
 0.009 1.67740113069230e+00
 0.010 2.59192339157845e+00
-0.011 1.35233654844193e+00
+0.011 1.35233654844192e+00
 0.012 2.49411271834166e+00
 0.013 1.19822091266649e+00
 0.014 1.12686400569923e-01

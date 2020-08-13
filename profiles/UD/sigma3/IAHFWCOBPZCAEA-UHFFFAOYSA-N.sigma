@@ -1,4 +1,4 @@
-# meta: {"name": "SUCCINONITRILE", "area [A^2]": 128.10208, "volume [A^3]": 111.94628, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 97.1445, "standard_INCHIKEY": "IAHFWCOBPZCAEA-UHFFFAOYSA-N"}
+# meta: {"name": "SUCCINONITRILE", "area [A^2]": 128.10208, "volume [A^3]": 111.94628, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 97.1445, "standard_INCHIKEY": "IAHFWCOBPZCAEA-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -17,7 +17,7 @@
 -0.012 2.92685744484756e-02
 -0.011 9.44734693725731e+00
 -0.010 1.37846333476020e+01
--0.009 7.24633760935641e+00
+-0.009 7.24633760935640e+00
 -0.008 4.23918121762789e+00
 -0.007 5.64408514432001e+00
 -0.006 6.74995904934928e+00

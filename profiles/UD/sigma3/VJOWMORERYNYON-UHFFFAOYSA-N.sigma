@@ -1,4 +1,4 @@
-# meta: {"name": "2-Methyl-5-vinylpyridine", "area [A^2]": 169.60261, "volume [A^3]": 164.3389, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 113.62045555555557, "standard_INCHIKEY": "VJOWMORERYNYON-UHFFFAOYSA-N"}
+# meta: {"name": "2-Methyl-5-vinylpyridine", "area [A^2]": 169.60261, "volume [A^3]": 164.3389, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 113.62045555555557, "standard_INCHIKEY": "VJOWMORERYNYON-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -42,8 +42,8 @@
 0.013 2.37886866284000e-01
 0.014 1.24545758604515e-01
 0.015 2.67142502178655e-02
-0.016 8.94217394379529e-02
-0.017 3.27727734352870e-02
+0.016 8.94217394379530e-02
+0.017 3.27727734352869e-02
 0.018 9.03025829101374e-03
 0.019 0.00000000000000e+00
 0.020 0.00000000000000e+00
@@ -145,7 +145,7 @@
 0.014 7.95729838608126e-01
 0.015 2.38653209624562e-01
 0.016 1.12936201883527e+00
-0.017 5.92743711472734e-01
+0.017 5.92743711472733e-01
 0.018 2.37307456704747e-01
 0.019 0.00000000000000e+00
 0.020 0.00000000000000e+00

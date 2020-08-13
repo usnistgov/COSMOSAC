@@ -38,7 +38,9 @@ if __name__ == '__main__':
 
     # PARALLEL
     f = functools.partial(write_one, num_profiles = 3, averaging='Hsieh')
-    pool = multiprocessing.Pool(2)
+    pool = multiprocessing.Pool(4)
     tic = timeit.default_timer()
     pool.map(f, files)
     print(timeit.default_timer()-tic,'s to write all profiles')
+
+    print('Maybe you want to run the script add_names in UD folder?')

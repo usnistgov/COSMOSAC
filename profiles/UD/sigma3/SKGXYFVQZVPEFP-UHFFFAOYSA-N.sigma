@@ -1,4 +1,4 @@
-# meta: {"name": "1,2,3,7-TETRACHLORODIBENZO-P-DIOXIN", "area [A^2]": 276.88248, "volume [A^3]": 299.48399, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 112.1016888888889, "standard_INCHIKEY": "SKGXYFVQZVPEFP-UHFFFAOYSA-N"}
+# meta: {"name": "1,2,3,7-TETRACHLORODIBENZO-P-DIOXIN", "area [A^2]": 276.88248, "volume [A^3]": 299.48399, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 112.1016888888889, "standard_INCHIKEY": "SKGXYFVQZVPEFP-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -17,7 +17,7 @@
 -0.012 0.00000000000000e+00
 -0.011 2.34367929915294e-01
 -0.010 2.36668709347294e+00
--0.009 5.67754440228512e+00
+-0.009 5.67754440228511e+00
 -0.008 6.72951154102999e+00
 -0.007 5.52710828530290e+00
 -0.006 7.43566686817956e+00
@@ -133,7 +133,7 @@
 0.002 2.28017886647524e-01
 0.003 1.92012646285362e-01
 0.004 3.77403564947711e-01
-0.005 7.90395725646022e-01
+0.005 7.90395725646021e-01
 0.006 2.55939986248346e-01
 0.007 0.00000000000000e+00
 0.008 0.00000000000000e+00

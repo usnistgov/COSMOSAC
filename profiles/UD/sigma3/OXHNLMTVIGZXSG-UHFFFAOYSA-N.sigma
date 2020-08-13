@@ -1,4 +1,4 @@
-# meta: {"name": "N-METHYLPYRROLE", "area [A^2]": 125.76963, "volume [A^3]": 114.2941, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 100.17540000000001, "standard_INCHIKEY": "OXHNLMTVIGZXSG-UHFFFAOYSA-N"}
+# meta: {"name": "N-METHYLPYRROLE", "area [A^2]": 125.76963, "volume [A^3]": 114.2941, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 100.17540000000001, "standard_INCHIKEY": "OXHNLMTVIGZXSG-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -132,7 +132,7 @@
 0.001 9.66019859375769e-04
 0.002 1.07390856270414e-02
 0.003 2.76100471239095e-02
-0.004 4.31968820995410e-02
+0.004 4.31968820995411e-02
 0.005 9.47958875533066e-02
 0.006 1.21165663124683e-01
 0.007 1.58471898046661e-02

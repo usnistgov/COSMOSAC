@@ -1,4 +1,4 @@
-# meta: {"name": "Methyl_diphenyl_phosphate", "area [A^2]": 279.70286, "volume [A^3]": 310.18466, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "VOWPVJACXJNHBC-UHFFFAOYSA-N"}
+# meta: {"name": "Methyl_diphenyl_phosphate", "area [A^2]": 279.70286, "volume [A^3]": 310.18466, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "VOWPVJACXJNHBC-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -32,7 +32,7 @@
 0.003 1.64061746083414e+01
 0.004 2.45906370063985e+01
 0.005 2.02684813647099e+01
-0.006 9.46816426566957e+00
+0.006 9.46816426566958e+00
 0.007 1.93899282133392e+00
 0.008 1.90886478479816e+00
 0.009 8.38985899491922e-01

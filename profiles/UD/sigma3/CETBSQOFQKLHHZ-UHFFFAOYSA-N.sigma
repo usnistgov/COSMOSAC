@@ -1,4 +1,4 @@
-# meta: {"name": "DIETHYL_DISULFIDE", "area [A^2]": 166.3067, "volume [A^3]": 159.87641, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "CETBSQOFQKLHHZ-UHFFFAOYSA-N"}
+# meta: {"name": "DIETHYL_DISULFIDE", "area [A^2]": 166.3067, "volume [A^3]": 159.87641, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": null, "standard_INCHIKEY": "CETBSQOFQKLHHZ-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -36,7 +36,7 @@
 0.007 3.09767952921105e+00
 0.008 5.33300900752439e+00
 0.009 3.11417662100658e+00
-0.010 8.84770481160350e-01
+0.010 8.84770481160349e-01
 0.011 0.00000000000000e+00
 0.012 0.00000000000000e+00
 0.013 0.00000000000000e+00

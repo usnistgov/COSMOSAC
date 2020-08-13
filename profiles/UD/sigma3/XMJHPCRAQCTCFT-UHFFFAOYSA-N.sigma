@@ -1,4 +1,4 @@
-# meta: {"name": "METHYL_CHLOROFORMATE", "area [A^2]": 113.94438, "volume [A^3]": 98.59805, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 84.39684, "standard_INCHIKEY": "XMJHPCRAQCTCFT-UHFFFAOYSA-N"}
+# meta: {"name": "METHYL_CHLOROFORMATE", "area [A^2]": 113.94438, "volume [A^3]": 98.59805, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 84.39684, "standard_INCHIKEY": "XMJHPCRAQCTCFT-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00

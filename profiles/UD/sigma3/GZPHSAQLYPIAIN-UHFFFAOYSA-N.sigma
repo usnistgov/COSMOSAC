@@ -1,4 +1,4 @@
-# meta: {"name": "NICOTINONITRILE", "area [A^2]": 141.83164, "volume [A^3]": 131.53608, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 105.96037500000001, "standard_INCHIKEY": "GZPHSAQLYPIAIN-UHFFFAOYSA-N"}
+# meta: {"name": "NICOTINONITRILE", "area [A^2]": 141.83164, "volume [A^3]": 131.53608, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 105.96037500000001, "standard_INCHIKEY": "GZPHSAQLYPIAIN-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -22,7 +22,7 @@
 -0.007 6.55772596201199e+00
 -0.006 4.49396069109792e+00
 -0.005 4.11821363170052e+00
--0.004 6.78030955595436e+00
+-0.004 6.78030955595435e+00
 -0.003 9.99128309317880e+00
 -0.002 9.74941970048076e+00
 -0.001 1.09404119248193e+01

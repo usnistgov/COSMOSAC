@@ -1,4 +1,4 @@
-# meta: {"name": "DIETHYL_MALONATE", "area [A^2]": 208.48447, "volume [A^3]": 197.85976, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 89.3244090909091, "standard_INCHIKEY": "IYXGSMUGOJNHAZ-UHFFFAOYSA-N"}
+# meta: {"name": "DIETHYL_MALONATE", "area [A^2]": 208.48447, "volume [A^3]": 197.85976, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 89.3244090909091, "standard_INCHIKEY": "IYXGSMUGOJNHAZ-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -140,7 +140,7 @@
 0.009 2.26943579867546e+00
 0.010 2.99424479228861e+00
 0.011 6.57910186704882e+00
-0.012 3.40663372748906e+00
+0.012 3.40663372748907e+00
 0.013 1.88329641272053e+00
 0.014 1.76730369264022e+00
 0.015 4.92625882548487e-01
