@@ -131,20 +131,52 @@ for key in covalent_radius.keys():
 def get_seg_DataFrame(COSMO_contents):
     # Read in the information.  Look for (X, Y, Z), and search to the end of the line, then capture until 
     # you get to a pair of two end-of-line characters, or an eol character followed by the end of string
-    sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\[\]/]+\n(.+)(\n\n|$)", COSMO_contents, re.DOTALL).group(1).rstrip()
+    if "DMol3/COSMO Results" in COSMO_contents:
+        sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\[\]/]+\n(.+)(\n\n|$)", COSMO_contents, re.DOTALL).group(1).rstrip()
+        table_assign = ['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
+    elif "Gaussian COSMO output" in COSMO_contents:
+        # Gaussian09: same unit (Bohr in G09) as Dmol3 but format is different
+        sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\[\]/\#\n]+\#\n([\s\S]+)", COSMO_contents, re.DOTALL).group(1).rstrip()
+        table_assign = ['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
+    elif "GAMESS/COSab RESULTS" in COSMO_contents:
+        # GAMESS: same unit (Bohr in GAMESS/COSab) as Dmol3 but format is different
+        sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\(\)\./\*]+\n([\s0-9\-\n.]+)(=+)", COSMO_contents, re.DOTALL).group(1).rstrip()
+        table_assign = ['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
     # Annotate the columns appropriately with units(!)
-    return pandas.read_csv(StringIO(sdata), names=['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential'],sep=r'\s+',engine= 'python')
+    return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine= 'python')
 
 def get_atom_DataFrame(COSMO_contents):
     # Read in the information
-    sdata = re.search(r"!DATE[a-zA-Z0-9:\s]+\n(.+)end\s+\nend", COSMO_contents, re.DOTALL).group(1)
+    if "DMol3/COSMO Results" in COSMO_contents:
+        sdata = re.search(r"!DATE[a-zA-Z0-9:\s]+\n(.+)end\s+\nend", COSMO_contents, re.DOTALL).group(1)
+        table_assign = ['atomidentifier','x / A','y / A','z / A','?1','?2','?3','atom','?4']
+    elif "Gaussian COSMO output" in COSMO_contents:
+        # Gaussian09: same unit as Dmol3 (Angstrom in G09) but format is slightly different
+        sdata = re.search(r"!DATE[a-zA-Z0-9:\s]*\n(.+)end\s*\nend", COSMO_contents, re.DOTALL).group(1)
+        table_assign = ['atomidentifier','x / A','y / A','z / A','?1','?2','?3','atom','?4']
+    elif "GAMESS/COSab RESULTS" in COSMO_contents:
+        print("GAMESS ATOM")
+        # GAMESS: same unit (Angstrom in GAMESS) as Dmol3 but format is different
+        sdata = re.search(r"EQUILIBRIUM GEOMETRY[\sa-zA-Z0-9\(\)\./\*\n]+\-+\n(\s[\s\S]+)\n\n\n", COSMO_contents, re.DOTALL).group(1)
+        table_assign = ['atom','charge','x / A','y / A','z / A']
     # Annotate the columns appropriately with units(!)
-    return pandas.read_csv(StringIO(sdata), names=['atomidentifier','x / A','y / A','z / A','?1','?2','?3','atom','?4'],sep=r'\s+',engine = 'python')
+    return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine = 'python')
 
 def get_area_volume(COSMO_contents):
     # Read in the information
-    area = float(re.search(r"Total surface area of cavity \(A\*\*2\)     =(.+)\n", COSMO_contents).group(1).strip())
-    volume = float(re.search(r"Total volume of cavity \(A\*\*3\)           =(.+)\n", COSMO_contents).group(1).strip())
+    if "DMol3/COSMO Results" in COSMO_contents:
+        area = float(re.search(r"Total surface area of cavity \(A\*\*2\)     =(.+)\n", COSMO_contents).group(1).strip())
+        volume = float(re.search(r"Total volume of cavity \(A\*\*3\)           =(.+)\n", COSMO_contents).group(1).strip())
+    elif "Gaussian COSMO output" in COSMO_contents:
+        # Gaussian09: "area" = area of the solute cavity surface (in Bohr^2)
+        # Gaussian09: "volume" = volume enclosed by the solute cavity surface (in Bohr^3)    
+        area = float(re.search(r"area  =(.+)\n", COSMO_contents).group(1).strip())*(0.52917721067)**2
+        volume = float(re.search(r"volume=(.+)\n", COSMO_contents).group(1).strip())*(0.52917721067)**3
+    elif "GAMESS/COSab RESULTS" in COSMO_contents:
+        # GAMESS: units of area and volume are same as DMol3
+        area = float(re.search(r"Total surface area of cavity \(A\*\*2\)\s+=(.+)\n", COSMO_contents).group(1).strip())
+        volume = float(re.search(r"Total volume of cavity \(A\*\*3\)\s+=(.+)\n", COSMO_contents).group(1).strip())
+
     return area, volume
 
 def weightbin_sigmas(sigmavals, sigmas_grid):
@@ -588,8 +620,15 @@ if __name__ == '__main__':
     parser.add_argument('--n', type=int, nargs=1, required=True, choices=[1,3], help='The number of profiles to generate, either 1 or 3')
     parser.add_argument('--averaging', type=str, nargs=1, required=True, choices=['Hsieh','Mullins'], help="The scheme used to do averaging of profiles, either 'Mullins' to use f_decay = 1 and r_av = 0.8176300195 A or 'Hsieh' to use f_decay = 3.57 and r_av = sqrt(7.25/pi)")
 
-    # args = parser.parse_args()
-    args = parser.parse_args('--n 3 --averaging Mullins --inpath UD/cosmo/UFHFLCQGNIYNRP-UHFFFAOYSA-N.cosmo --outpath UFHFLCQGNIYNRP-UHFFFAOYSA-N.sigma'.split(' '))  # For testing
+    args = parser.parse_args()
+    #args = parser.parse_args('--n 3 --averaging Mullins --inpath UD/cosmo/UFHFLCQGNIYNRP-UHFFFAOYSA-N.cosmo --outpath UFHFLCQGNIYNRP-UHFFFAOYSA-N.sigma'.split(' '))  # For testing
+
+    # For DMol3 .cosmo file test (ethanol)
+    #args = parser.parse_args('--n 3 --averaging Hsieh --inpath DMol3_TEST/LFQSCWFLJHTTHZ-UHFFFAOYSA-N.cosmo --outpath DMol3_TEST/LFQSCWFLJHTTHZ-UHFFFAOYSA-N.sigma'.split(' '))  # For testing
+    # For gaussian09 .cosmo file test
+    args = parser.parse_args('--n 3 --averaging Hsieh --inpath GAUSSIAN09_TEST/ethanol.cosmo --outpath GAUSSIAN09_TEST/ethanol.sigma'.split(' '))
+    # For GAMESS .gout (including cosmo data) file test
+    #args = parser.parse_args('--n 3 --averaging Hsieh --inpath GAMESS_TEST/ETHANOL.gout --outpath GAMESS_TEST/ETHANOL.sigma'.split(' '))
 
     try:
         dmol = read_Dmol3(inpath = args.inpath[0], num_profiles=args.n[0], averaging=args.averaging[0])
