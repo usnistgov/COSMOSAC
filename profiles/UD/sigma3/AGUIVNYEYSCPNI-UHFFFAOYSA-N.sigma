@@ -1,4 +1,4 @@
-# meta: {"name": "TETRYL", "area [A^2]": 249.2362, "volume [A^3]": 276.37073, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 40.47518000000001, "standard_INCHIKEY": "AGUIVNYEYSCPNI-UHFFFAOYSA-N"}
+# meta: {"name": "TETRYL", "area [A^2]": 249.2362, "volume [A^3]": 276.37073, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 40.47518000000001, "standard_INCHIKEY": "AGUIVNYEYSCPNI-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -16,7 +16,7 @@
 -0.013 4.52449086669603e-02
 -0.012 2.22140191269244e+00
 -0.011 4.67566643435925e+00
--0.010 6.40535892965328e+00
+-0.010 6.40535892965329e+00
 -0.009 7.89626745574448e+00
 -0.008 1.19469884007357e+01
 -0.007 1.16229687174042e+01

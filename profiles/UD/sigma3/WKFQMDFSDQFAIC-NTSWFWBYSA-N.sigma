@@ -1,4 +1,4 @@
-# meta: {"name": "2,4-Dimethylsulfolane", "area [A^2]": 173.751, "volume [A^3]": 179.61168, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "WKFQMDFSDQFAIC-NTSWFWBYSA-N"}
+# meta: {"name": "2,4-Dimethylsulfolane", "area [A^2]": 173.751, "volume [A^3]": 179.61168, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "WKFQMDFSDQFAIC-NTSWFWBYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -136,7 +136,7 @@
 0.005 8.98790078147063e-02
 0.006 7.72603725879938e-01
 0.007 1.68205033374498e+00
-0.008 8.35370210333914e-01
+0.008 8.35370210333915e-01
 0.009 2.03185597767332e+00
 0.010 6.39504043496121e+00
 0.011 7.13375745032214e+00

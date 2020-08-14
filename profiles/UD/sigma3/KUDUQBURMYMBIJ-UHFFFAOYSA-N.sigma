@@ -1,4 +1,4 @@
-# meta: {"name": "ETHYLENE_GLYCOL_DIACRYLATE", "area [A^2]": 219.00547, "volume [A^3]": 209.88955, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 92.11013333333331, "standard_INCHIKEY": "KUDUQBURMYMBIJ-UHFFFAOYSA-N"}
+# meta: {"name": "ETHYLENE_GLYCOL_DIACRYLATE", "area [A^2]": 219.00547, "volume [A^3]": 209.88955, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 92.11013333333331, "standard_INCHIKEY": "KUDUQBURMYMBIJ-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -18,7 +18,7 @@
 -0.011 0.00000000000000e+00
 -0.010 0.00000000000000e+00
 -0.009 4.61747262186194e-01
--0.008 7.11362008472103e+00
+-0.008 7.11362008472102e+00
 -0.007 1.95489828623095e+01
 -0.006 1.66826058294684e+01
 -0.005 1.28873728884448e+01
@@ -129,7 +129,7 @@
 -0.002 0.00000000000000e+00
 -0.001 0.00000000000000e+00
 0.000 0.00000000000000e+00
-0.001 9.88151799329395e-03
+0.001 9.88151799329394e-03
 0.002 8.21624129653226e-02
 0.003 2.21811735822485e-01
 0.004 7.47839034135326e-01

@@ -1,4 +1,4 @@
-# meta: {"name": "3,4-DICHLOROPHENYL_ISOCYANATE", "area [A^2]": 192.03853, "volume [A^3]": 190.88496, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 95.72161818181817, "standard_INCHIKEY": "MFUVCHZWGSJKEQ-UHFFFAOYSA-N"}
+# meta: {"name": "3,4-DICHLOROPHENYL_ISOCYANATE", "area [A^2]": 192.03853, "volume [A^3]": 190.88496, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 95.72161818181817, "standard_INCHIKEY": "MFUVCHZWGSJKEQ-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -135,7 +135,7 @@
 0.004 7.37839140787268e-01
 0.005 6.49198551981507e-01
 0.006 3.05153025937017e+00
-0.007 2.85085319037800e-01
+0.007 2.85085319037799e-01
 0.008 0.00000000000000e+00
 0.009 0.00000000000000e+00
 0.010 0.00000000000000e+00

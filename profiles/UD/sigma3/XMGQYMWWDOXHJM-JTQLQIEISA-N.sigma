@@ -1,4 +1,4 @@
-# meta: {"name": "D-LIMONENE", "area [A^2]": 194.85062, "volume [A^3]": 205.31495, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 116.40738000000002, "standard_INCHIKEY": "XMGQYMWWDOXHJM-JTQLQIEISA-N"}
+# meta: {"name": "D-LIMONENE", "area [A^2]": 194.85062, "volume [A^3]": 205.31495, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 116.40738000000002, "standard_INCHIKEY": "XMGQYMWWDOXHJM-JTQLQIEISA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -31,7 +31,7 @@
 0.002 1.67998092657476e+01
 0.003 7.13631978953838e+00
 0.004 7.32290732853130e+00
-0.005 5.89252507317605e+00
+0.005 5.89252507317604e+00
 0.006 4.45052931179248e+00
 0.007 5.77234059389488e+00
 0.008 3.20112046365061e+00

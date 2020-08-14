@@ -1,4 +1,4 @@
-# meta: {"name": "1,1,1,4,4,5,5-Heptafluoro-3-oxa-pentane", "area [A^2]": 176.23041, "volume [A^3]": 172.89892, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 77.41251666666663, "standard_INCHIKEY": "CWIFAKBLLXGZIC-UHFFFAOYSA-N"}
+# meta: {"name": "1,1,1,4,4,5,5-Heptafluoro-3-oxa-pentane", "area [A^2]": 176.23041, "volume [A^3]": 172.89892, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 77.41251666666663, "standard_INCHIKEY": "CWIFAKBLLXGZIC-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00

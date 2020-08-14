@@ -1,4 +1,4 @@
-# meta: {"name": "VINYL_ACETATE", "area [A^2]": 129.88593, "volume [A^3]": 113.02544, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 92.11013333333335, "standard_INCHIKEY": "XTXRWKRVRITETP-UHFFFAOYSA-N"}
+# meta: {"name": "VINYL_ACETATE", "area [A^2]": 129.88593, "volume [A^3]": 113.02544, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 92.11013333333335, "standard_INCHIKEY": "XTXRWKRVRITETP-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -133,8 +133,8 @@
 0.002 1.14044098669612e-02
 0.003 1.41022835214600e-01
 0.004 2.63793859857296e-01
-0.005 9.15931678824844e-01
-0.006 8.71029373406473e-01
+0.005 9.15931678824845e-01
+0.006 8.71029373406472e-01
 0.007 1.46737244689674e+00
 0.008 9.03386090383989e-01
 0.009 1.09879754907869e+00

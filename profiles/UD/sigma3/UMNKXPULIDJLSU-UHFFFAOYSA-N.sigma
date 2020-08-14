@@ -1,4 +1,4 @@
-# meta: {"name": "DICHLOROFLUOROMETHANE", "area [A^2]": 105.34113, "volume [A^3]": 90.84714, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 94.285225, "standard_INCHIKEY": "UMNKXPULIDJLSU-UHFFFAOYSA-N"}
+# meta: {"name": "DICHLOROFLUOROMETHANE", "area [A^2]": 105.34113, "volume [A^3]": 90.84714, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 94.285225, "standard_INCHIKEY": "UMNKXPULIDJLSU-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -27,7 +27,7 @@
 -0.002 7.37743226585411e+00
 -0.001 5.11613893023234e+00
 0.000 2.02041743250434e+00
-0.001 9.12336563354201e+00
+0.001 9.12336563354200e+00
 0.002 2.08641497529428e+01
 0.003 2.47508734984067e+01
 0.004 1.28925985897427e+01

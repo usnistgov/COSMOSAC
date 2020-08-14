@@ -1,4 +1,4 @@
-# meta: {"name": "BIS(CHLOROMETHYL)ETHER", "area [A^2]": 126.59356, "volume [A^3]": 116.11093, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 107.10596000000001, "standard_INCHIKEY": "HRQGCQVOJVTVLU-UHFFFAOYSA-N"}
+# meta: {"name": "BIS(CHLOROMETHYL)ETHER", "area [A^2]": 126.59356, "volume [A^3]": 116.11093, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 107.10596000000001, "standard_INCHIKEY": "HRQGCQVOJVTVLU-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -34,7 +34,7 @@
 0.005 1.40744783825951e+01
 0.006 1.09646081291385e+01
 0.007 8.56328588761899e-01
-0.008 8.35234109976866e-01
+0.008 8.35234109976867e-01
 0.009 8.34684244629631e-02
 0.010 0.00000000000000e+00
 0.011 0.00000000000000e+00

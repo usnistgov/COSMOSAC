@@ -1,4 +1,4 @@
-# meta: {"name": "BROMODIFLUOROMETHANE", "area [A^2]": 98.66702, "volume [A^3]": 82.95029, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": null, "standard_INCHIKEY": "GRCDJFHYVYUNHM-UHFFFAOYSA-N"}
+# meta: {"name": "BROMODIFLUOROMETHANE", "area [A^2]": 98.66702, "volume [A^3]": 82.95029, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": null, "standard_INCHIKEY": "GRCDJFHYVYUNHM-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -17,7 +17,7 @@
 -0.012 2.99693200322706e+00
 -0.011 1.31410853175879e+00
 -0.010 1.38364224789700e+00
--0.009 8.92705717468628e-01
+-0.009 8.92705717468627e-01
 -0.008 7.83507662323604e-01
 -0.007 1.91794048342374e+00
 -0.006 2.73158512381291e+00

@@ -1,4 +1,4 @@
-# meta: {"name": "TRIAZOLAM", "area [A^2]": 318.44322, "volume [A^3]": 375.94981, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-DONOR-ACCEPTOR", "disp. e/kB [K]": 107.44595217391306, "standard_INCHIKEY": "JOFWLTCLBGQGBO-UHFFFAOYSA-N"}
+# meta: {"name": "TRIAZOLAM", "area [A^2]": 318.44322, "volume [A^3]": 375.94981, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 107.44595217391306, "standard_INCHIKEY": "JOFWLTCLBGQGBO-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -139,7 +139,7 @@
 0.008 1.88021068472668e+00
 0.009 2.08647810231232e+00
 0.010 2.11053773324311e+00
-0.011 1.94275046024503e+00
+0.011 1.94275046024502e+00
 0.012 4.24410715616508e+00
 0.013 3.74517954139600e+00
 0.014 3.09644727065038e+00

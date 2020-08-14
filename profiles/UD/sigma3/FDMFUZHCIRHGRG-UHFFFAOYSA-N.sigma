@@ -1,4 +1,4 @@
-# meta: {"name": "3,3,3-TRIFLUOROPROPENE", "area [A^2]": 111.98094, "volume [A^3]": 98.92779, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "NHB", "disp. e/kB [K]": 84.90461666666667, "standard_INCHIKEY": "FDMFUZHCIRHGRG-UHFFFAOYSA-N"}
+# meta: {"name": "3,3,3-TRIFLUOROPROPENE", "area [A^2]": 111.98094, "volume [A^3]": 98.92779, "r_av [A]": 1.5191269449366247, "f_decay": 3.57, "sigma_hb [e/A^2]": 0.0084, "averaging": "Hsieh", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 84.90461666666667, "standard_INCHIKEY": "FDMFUZHCIRHGRG-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
@@ -19,7 +19,7 @@
 -0.010 1.59952990148057e-01
 -0.009 3.13281132775496e+00
 -0.008 5.64988439673757e+00
--0.007 5.40459665914078e+00
+-0.007 5.40459665914079e+00
 -0.006 4.68663172780480e+00
 -0.005 3.61980346069043e+00
 -0.004 3.72629495672483e+00
