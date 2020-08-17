@@ -272,11 +272,16 @@ class Dmol3COSMOParser(object):
         bonds = []
         atom_name_i = self.df_atom.atom.iloc[i]
 
-        for j, distance in enumerate(self.dist_mat_atom[i]):
-            if i == j: continue # atom cannot bond to itself
-            atom_name_j = self.df_atom.atom.iloc[j]
-            if distance < 1.15*bond_distances[(atom_name_i, atom_name_j)]:
-                bonds.append((j, atom_name_j))
+        if len(self.df_atom) == 2:
+            # Special case diatomic molecules, in which case the other 
+            # atom in the bond is the other atom of the molecule
+            bonds.append((1-i, self.df_atom.atom.iloc[1-i]))
+        else:
+            for j, distance in enumerate(self.dist_mat_atom[i]):
+                if i == j: continue # atom cannot bond to itself
+                atom_name_j = self.df_atom.atom.iloc[j]
+                if distance < 1.15*bond_distances[(atom_name_i, atom_name_j)]:
+                    bonds.append((j, atom_name_j))
         return bonds
 
     def get_HB_classes_per_atom(self):
