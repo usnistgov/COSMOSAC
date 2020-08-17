@@ -68,6 +68,7 @@ class CosmoView:
 
     def save(self, outpath, target = 'surf'):
         root, ext = os.path.splitext(outpath)
+        print(ext)
 
         # for output filetypes, see http://www.open3d.org/docs/release/tutorial/Basic/file_io.html
         self.__make_polygon(self.__COSMO_contents)
@@ -91,13 +92,15 @@ if __name__ == '__main__':
     parser.add_argument('--inpath', type=str, required=True, nargs=1, help='The path to the cosmo file that is to be processed')
     parser.add_argument('--outpath', type=str, required=True, nargs=1, help='Filetype: ply, .stl, xyz, .pcd, .obj, .off, .gltf. The path to the output of the cosmo surface profile that is to be generated')
     parser.add_argument('--target', type=str, required=True, nargs=1, help='specifysurf or atom. surf: cosmo surface, atom: atom positions')
+    args = parser.parse_args()
 
     # for testing
+    '''
     arg_str = '--target surf'\
             ' --inpath ../profiles/GAMESS_TEST/ETHANOL.gout'\
             ' --outpath GAMESS_ETHANOL_COSMO.ply'
     args = parser.parse_args(arg_str.split(' '))    
-
+    '''
     cosmo = CosmoView.read(args.inpath[0])
     cosmo.save(outpath=args.outpath[0], target = args.target[0])
 
