@@ -1,5 +1,5 @@
 """vizualise solvent accessible surface in .cosmo data"""
-""" Yauyuki Kusaka, y-kusaka at ist.go.jp"""
+""" Yauyuki Kusaka, y-kusaka at aist.go.jp"""
 import os, sys
 from io import StringIO
 from collections import namedtuple
