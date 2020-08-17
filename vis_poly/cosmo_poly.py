@@ -57,7 +57,7 @@ class CosmoView:
         self.pcd_atom.points = o3d.utility.Vector3dVector(xyz_atom)
       
         # a point cloud is converted to a surface mesh using Ball-Pivoting Algorithm.
-        # other possible surface reconstruction algoligthms: Octree, Poission, Powercrust, Delaunay including Alpha shapes, tight cocone etc.
+        # other possible surface reconstruction algorithms: Octree, Poission, Powercrust, Delaunay including Alpha shapes, tight cocone etc.
         # some references:
         # https://stackoverflow.com/questions/838761/robust-algorithm-for-surface-reconstruction-from-3d-point-cloud/1990419
         # https://github.com/marcomusy/vedo/blob/master/examples/advanced/recosurface.py
@@ -68,22 +68,23 @@ class CosmoView:
 
     def save(self, outpath, target = 'surf'):
         root, ext = os.path.splitext(outpath)
-        print(ext)
 
         # for output filetypes, see http://www.open3d.org/docs/release/tutorial/Basic/file_io.html
+        mesh_ext = [".ply", ".stl", ".obj", ".off", ".gltf"]
+        pcd_ext = [".pcd", ".xyz", ".xyzn"]
         self.__make_polygon(self.__COSMO_contents)
         # for polygon
-        if ext == ".ply" or ext == ".stl" or ext == ".obj" or ext == ".off" or ext == ".gltf":
+        if ext in mesh_ext:
             if target == "surf":
                 o3d.io.write_triangle_mesh(outpath, self.bpa_mesh, write_ascii=True)
-        elif ext == ".pcd" or ext == ".xyz" or ext == ".xyzn":
+        elif ext in pcd_ext:
             if target == "surf":
                 o3d.io.write_point_cloud(outpath, self.pcd, write_ascii=True)
             elif target == "atom":
                 o3d.io.write_point_cloud(outpath, self.pcd_atom, write_ascii=True)
         else:
-            print("output file type for \"surf\" should be .ply, .stl, .pcd, .obj, .off, .gltf, .xyz or .xyzn ")
-            print("output file type for \"atom\" should be .pcd, .xyz or .xyzn ")
+            print("output file type for \"surf\" should be" + ', '.join(mesh_ext))
+            print("output file type for \"atom\" should be" + ', '.join(pcd_ext))
         return
 
 if __name__ == '__main__':
@@ -91,7 +92,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate a cosmo surface polygon from a COSMO file')
     parser.add_argument('--inpath', type=str, required=True, nargs=1, help='The path to the cosmo file that is to be processed')
     parser.add_argument('--outpath', type=str, required=True, nargs=1, help='Filetype: ply, .stl, xyz, .pcd, .obj, .off, .gltf. The path to the output of the cosmo surface profile that is to be generated')
-    parser.add_argument('--target', type=str, required=True, nargs=1, help='specifysurf or atom. surf: cosmo surface, atom: atom positions')
+    parser.add_argument('--target', type=str, required=True, nargs=1, help='specify surf or atom. surf: cosmo surface, atom: atom positions')
     args = parser.parse_args()
 
     # for testing

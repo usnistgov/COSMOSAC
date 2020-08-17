@@ -4,12 +4,24 @@ This `cosmo_poly.py` script visualizes cosmo surface from cosmo segment data.
 
 ![cosmo surface image](ethanol.png)
 
-
 ## usage
 
-In `vis-poly` folder,
+In a termnial at `vis-poly` folder,
 ```termnial
 python vis_poly.py --inpath ../profiles/GAMESS_TEST/ETHANOL.gout --outpath GAMESS_ETHANOL_COSMO.ply --target surf 
+```
+
+or in another python script,
+
+```python
+import cosmo_poly
+
+inpath = 'profiles/GAMESS_TEST/ETHANOL.gout'
+outpath = 'GAMESS_ETHANOL_COSMO.ply'
+target = 'surf'
+
+cosmo = cosmo_poly.CosmoView.read(inpath)
+cosmo.save(outpath=outpath, target = target)
 ```
 
 ### input filetypes (`inpath`):
@@ -23,7 +35,8 @@ sample files can be found in profiles/DMol3_TEST, profiles/GAMESS_TEST, profiles
 
 ### output filetypes (`outpath`):
 
-In the `outpath`  argument, a output file with one of the following extensions must be given. The script supports general mesh formats 
+In the `outpath`  argument, a output file with one of the following extensions must be given. The script supports general mesh formats  
+
 - `ply`: stanford polygon
 - `stl`: Standard Triangulated Language
 - `obj`: wavefront OBJ
@@ -35,6 +48,8 @@ and point position data formats
 - `.xyz`  xyz coordinate data 
 - `.xyzn`  xyz coordinate + normal vectors
 
+Note: `charge/area` normalized to [0:1] is stored as RGB in `ply`.
+
 ### types for processing (`types`):
 
 Give `surf`  or `atom` for the `target`  argument. If `surf` is given, segment data is processed. Mesh or point data are saved depending on the extension given in the `outpath` argument.
@@ -44,7 +59,6 @@ If `atom`  is given, the position data is saved. In this case, only point data f
 
 -Open3d: https://pypi.org/project/open3d/
 
-
 -pyvista: https://pypi.org/project/pyvista/
 
 ## What Does This Script Do?
@@ -53,7 +67,9 @@ The script reads cosmo data using a parser in to_sigma.py. Then, a surface mesh 
 
 ## How can I vizualize mesh data?
 
-Many software supports mesh data. Some famous packages include
+Some famous packages including
 - paraview
 - meshlab
 - gmsh
+
+support mesh data vizualizations.
