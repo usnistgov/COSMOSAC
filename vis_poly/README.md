@@ -31,7 +31,7 @@ In the `inpath`  argument, cosmo data must be given. The script supports the fol
 - `.cosmo`  from Gaussian09
 - `.gout`  from GAMESS
 
-sample files can be found in profiles/DMol3_TEST, profiles/GAMESS_TEST, profiles/GAUSSIAN09_TEST and profiles/UD/cosmo.
+Samples can be found in profiles/DMol3_TEST, profiles/GAMESS_TEST, profiles/GAUSSIAN09_TEST and profiles/UD/cosmo.
 
 ### output filetypes (`outpath`):
 
