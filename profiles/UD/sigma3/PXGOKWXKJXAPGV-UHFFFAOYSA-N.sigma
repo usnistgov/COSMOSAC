@@ -1,4 +1,4 @@
-# meta: {"name": "?", "CAS": "?", "area [A^2]": 52.57859, "volume [A^3]": 34.125, "r_av [A]": 0.8176300195, "f_decay": 1.0, "sigma_hb [e/A^2]": 0.0084, "averaging": "Mullins", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 52.9318}
+# meta: {"name": "FLUORINE", "area [A^2]": 52.57859, "volume [A^3]": 34.125, "r_av [A]": 0.8176300195, "f_decay": 1.0, "sigma_hb [e/A^2]": 0.0084, "averaging": "Mullins", "disp. flag": "HB-ACCEPTOR", "disp. e/kB [K]": 52.9318, "standard_INCHIKEY": "PXGOKWXKJXAPGV-UHFFFAOYSA-N"}
 # Rows are given as: sigma [e/A^2] followed by a space, then psigmaA [A^2]
 # In the case of three sigma profiles, the order is NHB, OH, then OT
 -0.025 0.00000000000000e+00
