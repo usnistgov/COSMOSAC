@@ -63,7 +63,7 @@ class CosmoView:
         # https://github.com/marcomusy/vedo/blob/master/examples/advanced/recosurface.py
         avg_dist = np.mean(self.pcd.compute_nearest_neighbor_distance())
         radii = [2.0*avg_dist] # change coefficient if the genereted mesh is not watertight.
-        voxel_down_pcd = self.pcd.voxel_down_sample(voxel_size=1.2*avg_dist) # this will truncate fine structure.
+        voxel_down_pcd = self.pcd.voxel_down_sample(voxel_size=1.2*avg_dist) # change coefficient if the genereted mesh is not watertight.
         self.bpa_mesh = o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(voxel_down_pcd, o3d.utility.DoubleVector(radii))
 
     def save(self, outpath, target = 'surf'):
