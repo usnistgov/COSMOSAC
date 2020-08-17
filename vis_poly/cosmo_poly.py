@@ -57,7 +57,7 @@ class CosmoView:
         self.pcd_atom.points = o3d.utility.Vector3dVector(xyz_atom)
       
         # a point cloud is converted to a surface mesh using Ball-Pivoting Algorithm.
-        # other possible surface reconstruction algorithms: Octree, Poission, Powercrust, Delaunay including Alpha shapes, tight cocone etc.
+        # other possible surface reconstruction algorithms: Octree, Poission, Powercrust, Delaunay including Alpha shapes, Tight cocone etc.
         # some references:
         # https://stackoverflow.com/questions/838761/robust-algorithm-for-surface-reconstruction-from-3d-point-cloud/1990419
         # https://github.com/marcomusy/vedo/blob/master/examples/advanced/recosurface.py
