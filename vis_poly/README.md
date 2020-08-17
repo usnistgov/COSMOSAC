@@ -8,7 +8,7 @@ This `cosmo_poly.py` script visualizes cosmo surface from cosmo segment data.
 
 In a termnial at `vis-poly` folder,
 ```termnial
-python vis_poly.py --inpath ../profiles/GAMESS_TEST/ETHANOL.gout --outpath GAMESS_ETHANOL_COSMO.ply --target surf 
+python cosmo_poly.py --inpath ../profiles/GAMESS_TEST/ETHANOL.gout --outpath GAMESS_ETHANOL_COSMO.ply --target surf 
 ```
 
 or in another python script,
