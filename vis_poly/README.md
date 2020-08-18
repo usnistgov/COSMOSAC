@@ -4,7 +4,7 @@ This `cosmo_poly.py` script visualizes cosmo surface from cosmo segment data.
 
 ![cosmo surface image](ethanol.png)
 
-## usage
+## Usage
 
 In a terminal at `vis-poly` folder,
 ```termnial
@@ -76,4 +76,4 @@ support mesh data vizualization.
 
 ## Trouble?
 
-If a generated mesh was not watertight, try to change `voxel_size` and `radii`. These values are associated to the pre-treatment and the ball pivoting algorithm for the surface reconstruction. Downscaling of mesh truncates fine structure but ill-defined mesh can be avoided. 
+If a generated mesh was not watertight, try to change `voxel_size` and `radii`. These values are associated to the pre-treatment and the ball pivoting algorithm for the surface reconstruction. Downscaling of mesh by increasing `voxel_size`  will truncate fine structure but ill-defined mesh can be avoided. 
