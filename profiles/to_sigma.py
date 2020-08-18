@@ -155,7 +155,6 @@ def get_atom_DataFrame(COSMO_contents):
         sdata = re.search(r"!DATE[a-zA-Z0-9:\s]*\n(.+)end\s*\nend", COSMO_contents, re.DOTALL).group(1)
         table_assign = ['atomidentifier','x / A','y / A','z / A','?1','?2','?3','atom','?4']
     elif "GAMESS/COSab RESULTS" in COSMO_contents:
-        print("GAMESS ATOM")
         # GAMESS: same unit (Angstrom in GAMESS) as Dmol3 but format is different
         sdata = re.search(r"EQUILIBRIUM GEOMETRY[\sa-zA-Z0-9\(\)\./\*\n]+\-+\n(\s[\s\S]+)\n\n\n", COSMO_contents, re.DOTALL).group(1)
         table_assign = ['atom','charge','x / A','y / A','z / A']
@@ -169,7 +168,7 @@ def get_area_volume(COSMO_contents):
         volume = float(re.search(r"Total volume of cavity \(A\*\*3\)           =(.+)\n", COSMO_contents).group(1).strip())
     elif "Gaussian COSMO output" in COSMO_contents:
         # Gaussian09: "area" = area of the solute cavity surface (in Bohr^2)
-        # Gaussian09: "volume" = volume enclosed by the solute cavity surface (in Bohr^3)    
+        # Gaussian09: "volume" = volume enclosed by the solute cavity surface (in Bohr^3)
         area = float(re.search(r"area  =(.+)\n", COSMO_contents).group(1).strip())*(0.52917721067)**2
         volume = float(re.search(r"volume=(.+)\n", COSMO_contents).group(1).strip())*(0.52917721067)**3
     elif "GAMESS/COSab RESULTS" in COSMO_contents:
