@@ -6,7 +6,7 @@ This `cosmo_poly.py` script visualizes cosmo surface from cosmo segment data.
 
 ## usage
 
-In a termnial at `vis-poly` folder,
+In a terminal at `vis-poly` folder,
 ```termnial
 python cosmo_poly.py --inpath ../profiles/GAMESS_TEST/ETHANOL.gout --outpath GAMESS_ETHANOL_COSMO.ply --target surf 
 ```
@@ -37,10 +37,10 @@ Samples can be found in profiles/DMol3_TEST, profiles/GAMESS_TEST, profiles/GAUS
 
 In the `outpath`  argument, a output file with one of the following extensions must be given. The script supports general mesh formats  
 
-- `ply`: stanford polygon
+- `ply`: Stanford Polygon
 - `stl`: Standard Triangulated Language
-- `obj`: wavefront OBJ
-- `off`: object File Format
+- `obj`: Wavefront OBJ
+- `off`: Object File Format
 - `gltf`: GL Transmission Format
 
 and point position data formats
@@ -55,7 +55,7 @@ Note: `charge/area` normalized to [0:1] is stored as RGB in `ply`.
 Give `surf`  or `atom` for the `target`  argument. If `surf` is given, segment data is processed. Mesh or point data are saved depending on the extension given in the `outpath` argument.
 If `atom`  is given, the position data is saved. In this case, only point data format is accepted.
 
-## Dpendencies
+## Prerequisites
 
 -Open3d: https://pypi.org/project/open3d/
 
@@ -63,7 +63,7 @@ If `atom`  is given, the position data is saved. In this case, only point data f
 
 ## What Does This Script Do?
 
-The script reads cosmo data using a parser in to_sigma.py. Then, a surface mesh is constructed from the cosmo segment data using ball pivoting algorithm (open3d functionality).  Pyvista is a handy package for vlizualization of mesh data. 
+The script reads cosmo data using a parser in to_sigma.py. Then, a surface mesh is constructed from the cosmo segment data using ball pivoting algorithm (open3d functionality).  Pyvista is a handy package for vizualization of mesh data. 
 
 ## How can I vizualize mesh data?
 
@@ -76,4 +76,4 @@ support mesh data vizualization.
 
 ## Trouble?
 
-If a generated mesh was not watertight, try to change `voxel_size` and `radii`. These values are associated to the pre-treatment and the boll pivoting algorithm for the surface reconstruction. Downscaling of mesh truncates fine structure but ill-defined mesh can be avoided. 
+If a generated mesh was not watertight, try to change `voxel_size` and `radii`. These values are associated to the pre-treatment and the ball pivoting algorithm for the surface reconstruction. Downscaling of mesh truncates fine structure but ill-defined mesh can be avoided. 
