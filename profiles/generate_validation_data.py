@@ -27,7 +27,8 @@ T = 298.15 # [K]
 z = [0.3, 0.7]
 # At temperature T and mole fractions of z, carry out the COSMO calculations
 data = []
-# Iterate over each pair of fluids, 
+print('preparing to carry out maximum of', len(list(itertools.combinations(inchis, 2))), 'calculations')
+# Iterate over each pair of fluids
 for ip, pair in enumerate(itertools.combinations(inchis, 2)):
     # Do only every 20th point to cut down on the number of calculations
     if ip % 20 != 0:
