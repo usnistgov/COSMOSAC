@@ -60,7 +60,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='cCOSMO',
-    version='1.0.0',
+    version='1.0.1',
     author='Ian Bell et al.',
     author_email='ian.bell@nist.gov',
     description='C++ implementation of COSMO-SAC variants',
