@@ -387,7 +387,8 @@ namespace COSMOSAC {
                 }
 
                 EigenMatrix AA = Eigen::exp(-DELTAW / (R*T)).rowwise()*psigmas.transpose();
-                for (auto counter = 0; counter < 251; ++counter) {
+                auto max_iter = 250;
+                for (auto counter = 0; counter <= max_iter; ++counter) {
                     Gammanew = 1 / (AA.rowwise()*Gamma.transpose()).rowwise().sum();
                     Gamma = (Gamma + Gammanew) / 2;
                     double maxdiff = ((Gamma - Gammanew) / Gamma).cwiseAbs().real().maxCoeff();
@@ -411,7 +412,8 @@ namespace COSMOSAC {
                 }
                 auto midTime2 = std::chrono::high_resolution_clock::now();
 
-                for (auto counter = 0; counter < 251; ++counter) {
+                auto max_iter = 250;
+                for (auto counter = 0; counter <= max_iter; ++counter) {
                     for (Eigen::Index offset : {51*0, 51*1, 51*2}){
                         Gammanew.segment(offset + ileft, w) = 1 / (
                               AA.matrix().block(offset+ileft,51*0+ileft,w,w).array().rowwise()*Gamma.segment(51*0+ileft, w).transpose()
@@ -425,6 +427,14 @@ namespace COSMOSAC {
                     double maxdiff = ((Gamma - Gammanew) / Gamma).cwiseAbs().real().maxCoeff();
                     if (maxdiff < m_consts.Gamma_rel_tol) {
                         break;
+                    }
+                    if (counter == max_iter){
+                        throw std::invalid_argument("Could not obtain the desired tolerance of "
+                                                    +std::to_string(m_consts.Gamma_rel_tol)
+                                                    +" after "
+                                                    +std::to_string(max_iter)
+                                                    +"iterations in get_Gamma; current value is "
+                                                    +std::to_string(maxdiff));
                     }
                 }
                 auto endTime = std::chrono::high_resolution_clock::now();
