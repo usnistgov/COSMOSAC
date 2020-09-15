@@ -1,4 +1,4 @@
-﻿#ifndef COSMO_COSMO
+#ifndef COSMO_COSMO
 #define COSMO_COSMO
 
 #include "COSMO_SAC/profile_db.hpp"
@@ -375,6 +375,7 @@ namespace COSMOSAC {
             double R = m_consts.R;
             EigenArray153 Gamma, Gammanew; Gamma.setOnes(); Gammanew.setOnes();
             
+            auto max_iter = 1000;
             if (!m_consts.fast_Gamma){
 
                 // Build the massive \Delta W matrix that is 153*153 in size
@@ -387,13 +388,20 @@ namespace COSMOSAC {
                 }
 
                 EigenMatrix AA = Eigen::exp(-DELTAW / (R*T)).rowwise()*psigmas.transpose();
-                auto max_iter = 250;
                 for (auto counter = 0; counter <= max_iter; ++counter) {
                     Gammanew = 1 / (AA.rowwise()*Gamma.transpose()).rowwise().sum();
                     Gamma = (Gamma + Gammanew) / 2;
                     double maxdiff = ((Gamma - Gammanew) / Gamma).cwiseAbs().real().maxCoeff();
                     if (maxdiff < m_consts.Gamma_rel_tol) {
                         break;
+                    }
+                    if (counter == max_iter) {
+                        throw std::invalid_argument("Could not obtain the desired tolerance of "
+                            + std::to_string(m_consts.Gamma_rel_tol)
+                            + " after "
+                            + std::to_string(max_iter)
+                            + "iterations in get_Gamma; current value is "
+                            + std::to_string(maxdiff));
                     }
                 }
                 return Gamma;
@@ -412,7 +420,6 @@ namespace COSMOSAC {
                 }
                 auto midTime2 = std::chrono::high_resolution_clock::now();
 
-                auto max_iter = 250;
                 for (auto counter = 0; counter <= max_iter; ++counter) {
                     for (Eigen::Index offset : {51*0, 51*1, 51*2}){
                         Gammanew.segment(offset + ileft, w) = 1 / (
