@@ -4,6 +4,7 @@
 #include "COSMO_SAC/profile_db.hpp"
 
 #include <chrono>
+#include <sstream>
 
 namespace COSMOSAC {
     template<typename TYPE> TYPE POW2(TYPE x){return x*x;}
@@ -374,8 +375,11 @@ namespace COSMOSAC {
             auto startTime = std::chrono::high_resolution_clock::now();
             double R = m_consts.R;
             EigenArray153 Gamma, Gammanew; Gamma.setOnes(); Gammanew.setOnes();
+
+            // A convenience function to convert double values to string in scientific format
+            auto to_scientific = [](double val) { std::ostringstream out; out << std::scientific << val; return out.str(); };
             
-            auto max_iter = 1000;
+            auto max_iter = 2000;
             if (!m_consts.fast_Gamma){
 
                 // Build the massive \Delta W matrix that is 153*153 in size
@@ -397,11 +401,11 @@ namespace COSMOSAC {
                     }
                     if (counter == max_iter) {
                         throw std::invalid_argument("Could not obtain the desired tolerance of "
-                            + std::to_string(m_consts.Gamma_rel_tol)
+                            + to_scientific(m_consts.Gamma_rel_tol)
                             + " after "
                             + std::to_string(max_iter)
-                            + "iterations in get_Gamma; current value is "
-                            + std::to_string(maxdiff));
+                            + " iterations in get_Gamma; current value is "
+                            + to_scientific(maxdiff));
                     }
                 }
                 return Gamma;
@@ -437,11 +441,11 @@ namespace COSMOSAC {
                     }
                     if (counter == max_iter){
                         throw std::invalid_argument("Could not obtain the desired tolerance of "
-                                                    +std::to_string(m_consts.Gamma_rel_tol)
+                                                    + to_scientific(m_consts.Gamma_rel_tol)
                                                     +" after "
                                                     +std::to_string(max_iter)
-                                                    +"iterations in get_Gamma; current value is "
-                                                    +std::to_string(maxdiff));
+                                                    +" iterations in get_Gamma; current value is "
+                                                    + to_scientific(maxdiff));
                     }
                 }
                 auto endTime = std::chrono::high_resolution_clock::now();
