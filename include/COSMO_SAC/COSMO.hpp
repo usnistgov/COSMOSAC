@@ -371,7 +371,15 @@ namespace COSMOSAC {
             }
             return Eigen::exp(-DELTAW/(R*T)).rowwise()*psigmas.transpose();
         }
-        EigenArray153 get_Gamma(double T, EigenArray153 psigmas) const { // psigmas in NHB, OH, OT order
+        /**
+        Obtain the segment activity coefficients \f$\Gamma\f$ for given a set of charge densities
+
+        If fast_Gamma is enabled, then only segments that have some contribution are included in the iteration (can be a significant acceleration for nonpolar+nonpolar mixtures)
+
+        \param T Temperature, in K
+        \param psigmas Charge densities, in the order of NHB, OH, OT.  Length is 153.
+        */
+        EigenArray153 get_Gamma(double T, EigenArray153 psigmas) const { 
             auto startTime = std::chrono::high_resolution_clock::now();
             double R = m_consts.R;
             EigenArray153 Gamma, Gammanew; Gamma.setOnes(); Gammanew.setOnes();
