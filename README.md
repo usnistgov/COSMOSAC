@@ -36,6 +36,7 @@ To get started, you should check out the Jupyter notebooks; they demonstrate som
 
 You will need:
 
+* git 
 * cmake (on windows, install from cmake, on linux ``sudo apt install cmake`` should do it, on OSX, ``brew install cmake``)
 * Python (the anaconda distribution is used by the authors)
 * a compiler (on windows, Visual Studio 2015+ (express version is fine), g++ on linux/OSX)
