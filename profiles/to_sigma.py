@@ -497,7 +497,7 @@ class Dmol3COSMOParser(object):
         """
 
         if num_profiles == 1:
-            sigma_nhb = [(s,a) for s,a in zip(sigmavals,  df['area / A^2'])]
+            sigma_nhb = [(s,a) for s,a in zip(sigmavals,  self.df['area / A^2'])]
             sigma_OH = None
             sigma_OT = None
         elif num_profiles == 3:
@@ -547,6 +547,7 @@ class Dmol3COSMOParser(object):
         # will be evaluated, -0.025 to 0.025, in increments of 0.001
         bin_width = 0.001
         sigmas = np.arange(-0.025, 0.025+0.0001, bin_width) # [e/A^2]
+        meta = self.get_meta()
 
         if self.num_profiles == 1:
             psigmaA = weightbin_sigmas(self.sigma_nhb, sigmas)
@@ -569,8 +570,6 @@ class Dmol3COSMOParser(object):
             psigmaA_nhb = psigmaA_nhb + psigmaA_hb*(1-P_hb)
 
             dispersion_flag = 'NHB'
-
-            meta = self.get_meta()
             
             # Determine dispersion flag for the molecule
             if self.is_water:
