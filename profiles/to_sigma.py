@@ -142,6 +142,11 @@ def get_seg_DataFrame(COSMO_contents):
         # GAMESS: same unit (Bohr in GAMESS/COSab) as Dmol3 but format is different
         sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\(\)\./\*]+\n([\s0-9\-\n.]+)(=+)", COSMO_contents, re.DOTALL).group(1).rstrip()
         table_assign = ['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
+    elif "OpenMOPAC.net" in COSMO_contents:
+        # MOPAC: unit in ANGSTROMS
+        sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\(\)/\*\-]+\n([\s0-9\-\n.]+)", COSMO_contents, re.DOTALL).group(1).rstrip()
+        table_assign = ['n','atom','elem', 'x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
+
     # Annotate the columns appropriately with units(!)
     return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine= 'python')
 
@@ -158,6 +163,11 @@ def get_atom_DataFrame(COSMO_contents):
         # GAMESS: same unit (Angstrom in GAMESS) as Dmol3 but format is different
         sdata = re.search(r"EQUILIBRIUM GEOMETRY[\sa-zA-Z0-9\(\)\./\*\n]+\-+\n(\s[\s\S]+)\n\n\n", COSMO_contents, re.DOTALL).group(1)
         table_assign = ['atom','charge','x / A','y / A','z / A']
+    elif "OpenMOPAC.net" in COSMO_contents:
+        # MOPAC: unit in ANGSTROMS
+        sdata = re.search(r"ATOMIC\sDATA\s\n[\sa-zA-Z\(\)/\.\*\-]+\n([\s0-9\-\n.]+)\n\n", COSMO_contents, re.DOTALL).group(1)
+        table_assign = ['atom', 'elem', 'x / A','y / A','z / A', 'r / A', 'charge', 'area', 'sigma']
+
     # Annotate the columns appropriately with units(!)
     return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine = 'python')
 
@@ -175,6 +185,9 @@ def get_area_volume(COSMO_contents):
         # GAMESS: units of area and volume are same as DMol3
         area = float(re.search(r"Total surface area of cavity \(A\*\*2\)\s+=(.+)\n", COSMO_contents).group(1).strip())
         volume = float(re.search(r"Total volume of cavity \(A\*\*3\)\s+=(.+)\n", COSMO_contents).group(1).strip())
+    elif "OpenMOPAC.net" in COSMO_contents:
+        area = float(re.search(r"COSMO\sAREA\s+=\s+([0-9\-\n.]+)", COSMO_contents).group(1).strip())
+        volume = float(re.search(r"COSMO\sVOLUME\s+=\s+([0-9\-\n.]+)", COSMO_contents).group(1).strip())
 
     return area, volume
 
