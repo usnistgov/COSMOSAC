@@ -346,6 +346,83 @@ public:
     }
 };
 
+/// The DirectImport feature for importing profiles based on "filename" + "path" 
+class DirectImport : public ProfileDatabase {
+private:
+    std::string m_dbpath;
+
+public:
+    DirectImport() {
+    }
+
+    void add_profile(const std::string& identifier, const std::string& dbpath = ".") {
+        m_dbpath = dbpath;
+        // Now we load the sigma profile(s) from the file
+        auto lines = str_split(get_file_contents(m_dbpath + "/" + identifier + ".sigma"));
+
+        std::vector<double> _sigma, _psigmaA;
+        FluidProfiles fluid;
+        std::string meta;
+        for (auto &&line : lines) {
+            if (line.substr(0,8) == "# Name: "){ std::string check_name = line.substr(8,line.size()-8); continue;}
+            if (line.substr(0,8) == "# CASn: ") { std::string check_CAS = line.substr(8, line.size() - 8); continue; }
+            if (line.substr(0, 8) == "# meta: ") { meta = line.substr(8, line.size() - 8); continue; }
+            if (line[0] == '#'){ continue; }
+            auto v = str_split(strrstrip(line), " ");
+            if (v.empty() || (v.size() ==1 && v[0].empty())){ continue; }
+            _sigma.push_back(mystrtod(v[0]));
+            _psigmaA.push_back(mystrtod(v[1]));
+        }
+        Eigen::Map<Eigen::ArrayXd> sigma(&(_sigma[0]), _sigma.size());
+        Eigen::Map<Eigen::ArrayXd> psigmaA(&(_psigmaA[0]), _psigmaA.size());
+        fluid.name = identifier;
+
+        if (sigma.size() == 51 && psigmaA.size() == 51) {
+            fluid.profiles.nhb = SigmaProfile(sigma, psigmaA);
+            fluid.A_COSMO_A2 = fluid.profiles.nhb.psigmaA().sum();
+        }
+        else if (sigma.size() == 51*3 && psigmaA.size() == 51*3){
+            fluid.profiles.nhb = SigmaProfile(sigma.segment(0*51, 51), psigmaA.segment(0*51, 51));
+            fluid.profiles.oh =  SigmaProfile(sigma.segment(1*51, 51), psigmaA.segment(1*51, 51));
+            fluid.profiles.ot =  SigmaProfile(sigma.segment(2*51, 51), psigmaA.segment(2*51, 51));
+            double check_Area2 = fluid.profiles.nhb.psigmaA().sum() + fluid.profiles.oh.psigmaA().sum() + fluid.profiles.ot.psigmaA().sum();
+            fluid.A_COSMO_A2 = check_Area2;
+        }
+        else{
+            throw std::invalid_argument("Length of sigma profile ["+std::to_string(sigma.size())+"] is neither 51 nor 51*3");
+        }
+        fluid.meta = nlohmann::json::parse(meta);
+        fluid.V_COSMO_A3 = fluid.meta["volume [A^3]"];
+        std::string flag = fluid.meta["disp. flag"];
+        if (flag == "COOH") {
+            fluid.dispersion_flag = FluidProfiles::dispersion_classes::DISP_COOH;
+        }
+        else if (flag == "H2O") {
+            fluid.dispersion_flag = FluidProfiles::dispersion_classes::DISP_WATER;
+        }
+        else if (flag == "NHB") {
+            fluid.dispersion_flag = FluidProfiles::dispersion_classes::DISP_NHB;
+        }
+        else if (flag == "HB-ACCEPTOR") {
+            fluid.dispersion_flag = FluidProfiles::dispersion_classes::DISP_ONLY_ACCEPTOR;
+        }
+        else if (flag == "HB-DONOR-ACCEPTOR") {
+            fluid.dispersion_flag = FluidProfiles::dispersion_classes::DISP_DONOR_ACCEPTOR;
+        }
+        else {
+            throw std::invalid_argument("Unable to match dispersion flag: \""+flag+"\"");
+        }
+        if (fluid.meta["disp. e/kB [K]"].is_null()){
+            // The null from JSON is mapped to a NaN of C++
+            fluid.dispersion_eoverkB = std::numeric_limits<double>::quiet_NaN();
+        }
+        else {
+            fluid.dispersion_eoverkB = fluid.meta["disp. e/kB [K]"];
+        }
+        add_to_db(identifier, std::move(fluid));
+    }
+};
+
 } /* namespace COSMOSAC */
 
 #endif

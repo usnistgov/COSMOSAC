@@ -70,7 +70,13 @@ void init_COSMO(py::module &m) {
     py::class_<DelawareProfileDatabase, ProfileDatabase >(m, "DelawareProfileDatabase")
         .def(py::init<const std::string &, const std::string &>())
         .def("add_profile", &DelawareProfileDatabase::add_profile)
-        .def("to_JSON", &DelawareProfileDatabase::to_JSON);
+        .def("to_JSON", &DelawareProfileDatabase::to_JSON)
+        ;
+
+    py::class_<DirectImport, ProfileDatabase >(m, "DirectImport")
+        .def(py::init<>())
+        .def("add_profile", &DirectImport::add_profile, py::arg("name"), py::arg("path") = ".")
+        ;
 
     using EigenArrayA = AbstractCOSMOModel::EigenArray;
     py::class_<AbstractCOSMOModel >(m, "AbstractCOSMOModel")
