@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <cctype>
 #include <functional>
+#include <optional>
 #include "nlohmann/json.hpp"
 
 namespace COSMOSAC {
@@ -41,14 +42,14 @@ struct SigmaProfileSet {
 
 /// The sigma profiles (and some more metadata) associated with the fluid
 struct FluidProfiles {
-    enum class dispersion_classes{DISP_WATER, DISP_COOH, DISP_NHB, DISP_ONLY_ACCEPTOR, DISP_DONOR_ACCEPTOR};
+    enum class dispersion_classes {DISP_WATER, DISP_COOH, DISP_NHB, DISP_ONLY_ACCEPTOR, DISP_DONOR_ACCEPTOR};
     SigmaProfileSet profiles;
     std::string name;
     std::size_t VTnumber;
     double A_COSMO_A2; ///< The surface area of the molecule as calculated by COSMO-SAC, in A^2
     double V_COSMO_A3; ///< The volume of the molecule as calculated by COSMO-SAC, in A^3
     dispersion_classes dispersion_flag;
-    double dispersion_eoverkB;
+    std::optional<double> dispersion_eoverkB;
     nlohmann::json meta; ///< Any additional metadata, stored in JSON format
 };
 
@@ -364,12 +365,21 @@ public:
         FluidProfiles fluid;
         std::string meta;
         for (auto &&line : lines) {
-            if (line.substr(0,8) == "# Name: "){ std::string check_name = line.substr(8,line.size()-8); continue;}
-            if (line.substr(0,8) == "# CASn: ") { std::string check_CAS = line.substr(8, line.size() - 8); continue; }
-            if (line.substr(0, 8) == "# meta: ") { meta = line.substr(8, line.size() - 8); continue; }
+            if (line.substr(0,8) == "# Name: ") { 
+                std::string check_name = line.substr(8); 
+                continue;
+            }
+            if (line.substr(0,8) == "# CASn: ") { 
+                std::string check_CAS = line.substr(8); 
+                continue; 
+            }
+            if (line.substr(0,8) == "# meta: ") { 
+                meta = line.substr(8); 
+                continue; 
+            }
             if (line[0] == '#'){ continue; }
             auto v = str_split(strrstrip(line), " ");
-            if (v.empty() || (v.size() ==1 && v[0].empty())){ continue; }
+            if (v.empty() || (v.size() == 1 && v[0].empty())) { continue; }
             _sigma.push_back(mystrtod(v[0]));
             _psigmaA.push_back(mystrtod(v[1]));
         }
@@ -412,12 +422,10 @@ public:
         else {
             throw std::invalid_argument("Unable to match dispersion flag: \""+flag+"\"");
         }
-        if (fluid.meta["disp. e/kB [K]"].is_null()){
-            // The null from JSON is mapped to a NaN of C++
-            fluid.dispersion_eoverkB = std::numeric_limits<double>::quiet_NaN();
-        }
-        else {
-            fluid.dispersion_eoverkB = fluid.meta["disp. e/kB [K]"];
+        if (fluid.meta["disp. e/kB [K]"].is_null()) {
+            fluid.dispersion_eoverkB = std::nullopt;
+        } else {
+            fluid.dispersion_eoverkB = fluid.meta["disp. e/kB [K]"].get<double>();
         }
         add_to_db(identifier, std::move(fluid));
     }
