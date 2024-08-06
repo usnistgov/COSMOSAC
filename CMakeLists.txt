@@ -1,6 +1,10 @@
 project(cCOSMO)
-cmake_minimum_required(VERSION 3.0)
-set (CMAKE_CXX_STANDARD 11)
+cmake_minimum_required(VERSION 3.10)
+
+# Set the C++ standard to C++17
+set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD_REQUIRED ON)
+set (CMAKE_CXX_EXTENSIONS OFF)
 
 string(CONFIGURE "#define COSMO_SAC_HOME \"${CMAKE_CURRENT_SOURCE_DIR}\"" CONFIG_HEADER)
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/HOME_PATH.h" ${CONFIG_HEADER})
@@ -11,6 +15,7 @@ set(MY_INCLUDES
     "${CMAKE_CURRENT_BINARY_DIR}" 
     "${CMAKE_CURRENT_SOURCE_DIR}/externals/nlohmann/single_include"
 )
+
 add_executable(main "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
 target_sources(main PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/externals/Eigen/debug/msvc/eigen.natvis")
 target_include_directories(main PUBLIC ${MY_INCLUDES})
