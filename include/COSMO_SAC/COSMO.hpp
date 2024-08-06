@@ -518,7 +518,8 @@ namespace COSMOSAC {
                 w = -0.27027;
             }
 
-            double ekB0 = m_fluids[0].dispersion_eoverkB, ekB1 = m_fluids[1].dispersion_eoverkB;
+            double ekB0 = m_fluids[0].dispersion_eoverkB.value_or(0.0);
+            double ekB1 = m_fluids[1].dispersion_eoverkB.value_or(0.0);
             double A = w*(0.5*(ekB0+ekB1) - sqrt(ekB0*ekB1));
             EigenArray lngamma_dsp(2);
             lngamma_dsp(0) = A*x[1]*x[1];
