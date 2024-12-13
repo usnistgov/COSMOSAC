@@ -1,0 +1,50 @@
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+before-all = "apk add clang"
+environment = { CXX="clang++" }
+
+[build-system]
+requires = ["scikit-build-core >=0.4.3", "pybind11 >=2.13", "typing_extensions"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "cCOSMO"
+version = "1.0.2"
+description = "C++ implementation of COSMO-SAC variants"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "Ian Bell", email = "ian.bell@nist.gov" },
+]
+#classifiers = [
+#    "License :: BSD",
+#]
+
+[project.urls]
+Homepage = "https://github.com/usnistgov/COSMOSAC"
+
+[tool.scikit-build]
+# Protect the configuration against future changes in scikit-build-core
+minimum-version = "0.10"
+
+# Setuptools-style build caching in a local directory
+build-dir = "build/{wheel_tag}"
+
+# The package to be built is that in the teqp folder
+# wheel.packages = ["teqp"]
+build.targets = ["cCOSMO"]
+
+# Build stable ABI wheels for CPython 3.12+
+# wheel.py-api = "cp312"
+
+wheel.license-files = ["LICENSE.md"]
+
+
+#### Additional options for debugging
+# cmake.verbose = true
+# cmake.build-type = "Debug"
+# cmake.args = ["-G Xcode", "-DXCODE_DEBUG_PYTHON=ON"]
+# cmake.args = ["-DVERBOSE=ON"]
+
+[tool.cibuildwheel]
+build-verbosity = 1

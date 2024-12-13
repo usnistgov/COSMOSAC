@@ -71,17 +71,22 @@ static std::vector<std::string> str_split(const std::string &s,
     return o;
 }
 
-/// The following code for the trim functions was taken from http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring
-// trim from start
-static std::string& strlstrip(std::string& s) {
-    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char c) { return !std::isspace(c); }));
-    return s;
+
+
+// From https://stackoverflow.com/a/20262860
+static std::string& strlstrip(std::string& str) {
+    size_t start = str.find_first_not_of( " \n\r\t" );
+    if ( start != std::string::npos )
+        str = str.substr( start );
+    return str;
 }
 
-// trim from end
-static std::string& strrstrip(std::string& s) {
-    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char c) { return !std::isspace(c); }).base(), s.end());
-    return s;
+// From https://stackoverflow.com/a/20262860
+static std::string& strrstrip(std::string& str) {
+    size_t end = str.find_last_not_of( " \n\r\t" );
+    if ( end != std::string::npos )
+        str.resize( end + 1 );
+    return str;
 }
 
 // trim from both ends

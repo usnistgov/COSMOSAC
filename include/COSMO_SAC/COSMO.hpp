@@ -43,6 +43,7 @@ namespace COSMOSAC {
         CombinatorialConstants m_comb_consts;
     public:
         AbstractCOSMOModel(const ProfileDatabase &db, const std::vector<std::string> &identifiers) : datadb(db), m_fluids(build_fluids(identifiers)) {};
+        virtual ~AbstractCOSMOModel() = default;
 
         std::tuple<Eigen::Index, Eigen::Index> get_nonzero_bounds(){
             // Determine the range of entries in p(sigma) that are greater than zero, we 
@@ -51,8 +52,8 @@ namespace COSMOSAC {
             for (auto i = 0; i < m_fluids.size(); ++i) {
                 const EigenArray psigma = m_fluids[i].profiles.nhb.psigma(m_fluids[i].A_COSMO_A2);
                 Eigen::Index ileft = 0, iright = psigma.size();
-                for (auto ii = 0; ii < psigma.size(); ++ii) { if (std::abs(psigma(ii) > 1e-16)) { ileft = ii; break; } }
-                for (auto ii = psigma.size() - 1; ii > ileft; --ii) { if (std::abs(psigma(ii) > 1e-16)) { iright = ii; break; } }
+                for (auto ii = 0; ii < psigma.size(); ++ii) { if (std::abs(psigma(ii)) > 1e-16) { ileft = ii; break; } }
+                for (auto ii = psigma.size() - 1; ii > ileft; --ii) { if (std::abs(psigma(ii)) > 1e-16) { iright = ii; break; } }
                 if (ileft < min_ileft) { min_ileft = ileft; }
                 if (iright > max_iright) { max_iright = iright; }
             }
