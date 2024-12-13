@@ -5,3 +5,5 @@
 /profiles/UD/test1
 /profiles/UD/test3
 **/__pycache__
+.DS_Store
+/bld
