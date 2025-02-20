@@ -56,26 +56,18 @@ then following the normal instructions
 
 ### From the git repository
 
-Clone (recursively!) and run the ``setup.py`` script (the ``--shallow-submodules`` flag is optional, and checks out only the most recent commit of the submodules, saving rather a lot of data for Eigen)
+Clone (recursively!) (the ``--shallow-submodules`` flag is optional, and checks out only the most recent commit of the submodules, saving rather a lot of data for Eigen)
 
 ```
 git clone --recursive --shallow-submodules https://github.com/usnistgov/COSMOSAC
 cd COSMOSAC
-python setup.py install
+```
+followed by
+```
+pip -vv install .
 ```
 
-to install, or 
-
-```
-python setup.py develop
-```
-
-to use a locally-compiled version for testing.  If you want to build a debug version, you can do so with
-
-```
-python setup.py build -g develop
-```
-With a debug build, you can step into the debugger to debug the C++ code, for instance.  
+to install. The (``-vv`` gives a more verbose output and is useful for debugging)
 
 ### Cmake build
 
