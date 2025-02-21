@@ -24,6 +24,7 @@ add_subdirectory(externals/pybind11)
 pybind11_add_module(cCOSMO "${CMAKE_CURRENT_SOURCE_DIR}/src/pybind11_interface.cxx")
 set_target_properties(cCOSMO PROPERTIES COMPILE_FLAGS -DPYBIND11)
 target_include_directories(cCOSMO PUBLIC ${MY_INCLUDES})
+install(TARGETS cCOSMO LIBRARY DESTINATION cCOSMO)
 
 add_executable(catch_tests "${CMAKE_CURRENT_SOURCE_DIR}/tests/catch_tests.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/tests/catch_main.cpp")
 target_sources(catch_tests PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/externals/Eigen/debug/msvc/eigen.natvis" "${CMAKE_CURRENT_SOURCE_DIR}/externals/nlohmann/nlohmann_json.natvis")
