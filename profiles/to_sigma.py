@@ -140,7 +140,7 @@ def get_seg_DataFrame(COSMO_contents):
         table_assign = ['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
     elif "GAMESS/COSab RESULTS" in COSMO_contents:
         # GAMESS: same unit (Bohr in GAMESS/COSab) as Dmol3 but format is different
-        sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\(\)\./\*]+\n([\s0-9\-\n.]+)(=+)", COSMO_contents, re.DOTALL).group(1).rstrip()
+        sdata = re.search(r"\(X, Y, Z\)[ a-zA-Z0-9\(\)\./\*]+\n([\s0-9\-\n.]+)(=+)", COSMO_contents, re.DOTALL).group(1).rstrip()
         table_assign = ['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
     # Annotate the columns appropriately with units(!)
     return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine= 'python')
@@ -156,7 +156,10 @@ def get_atom_DataFrame(COSMO_contents):
         table_assign = ['atomidentifier','x / A','y / A','z / A','?1','?2','?3','atom','?4']
     elif "GAMESS/COSab RESULTS" in COSMO_contents:
         # GAMESS: same unit (Angstrom in GAMESS) as Dmol3 but format is different
-        sdata = re.search(r"EQUILIBRIUM GEOMETRY[\sa-zA-Z0-9\(\)\./\*\n]+\-+\n(\s[\s\S]+)\n\n\n", COSMO_contents, re.DOTALL).group(1)
+        sdata = re.search(r"EQUILIBRIUM GEOMETRY[ a-zA-Z0-9\(\)\./\*\n]+\-+\n(\s[\s\S]+?)\n\n\n", COSMO_contents, re.DOTALL).group(1)
+        for x in keys(covalent_radius):
+            if len(x) == 2:
+                sdata = sdata.replace(x.upper(), x) #replaces CL with Cl etc, so that the rest of the script works.
         table_assign = ['atom','charge','x / A','y / A','z / A']
     # Annotate the columns appropriately with units(!)
     return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine = 'python')
