@@ -16,6 +16,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 BOHR_TO_ANGSTROM = 0.52917721067
+FLOAT_TOKEN_RE = re.compile(r'^[+-]?(?:\d+\.\d*|\d*\.\d+|\d+)(?:[Ee][+-]?\d+)?$')
 
 # From https://doi.org/10.1039/b801115j
 # Covalent radii in angstrom, used to determine bonding
@@ -156,14 +157,15 @@ def is_orca_cpcm(COSMO_contents):
 
 
 def is_float_token(token):
-    return re.match(r'^[+-]?(?:\d+\.\d*|\d*\.\d+|\d+)(?:[Ee][+-]?\d+)?$', token) is not None
+    return FLOAT_TOKEN_RE.match(token) is not None
 
 
 def get_orca_corrected_charges(corr_path, expected_count):
     if not os.path.exists(corr_path):
-        raise ValueError('Missing ORCA corrected-charge file [{0}]'.format(corr_path))
+        raise FileNotFoundError('Missing ORCA corrected-charge file [{0}]'.format(corr_path))
 
-    corr_contents = open(corr_path).read()
+    with open(corr_path, encoding='utf-8') as fp:
+        corr_contents = fp.read()
     block = re.search(r"C-PCM corrected charges:\s*\n([\s\S]+)", corr_contents)
     if block is None:
         raise ValueError('Could not find "C-PCM corrected charges:" block in [{0}]'.format(corr_path))
@@ -275,12 +277,17 @@ def get_atom_DataFrame(COSMO_contents):
         for col in ['x / a.u.','y / a.u.','z / a.u.','atomic_number']:
             df_raw[col] = pandas.to_numeric(df_raw[col], errors='coerce')
 
+        atom_symbols = df_raw['atomic_number'].astype(int).map(atomic_number_to_symbol)
+        if atom_symbols.isnull().any():
+            bad_numbers = sorted(df_raw.loc[atom_symbols.isnull(), 'atomic_number'].astype(int).unique().tolist())
+            raise ValueError('Unsupported atomic number(s) in ORCA coordinates: {0}'.format(bad_numbers))
+
         return pandas.DataFrame({
             'atomidentifier': np.arange(1, len(df_raw) + 1),
             'x / A': df_raw['x / a.u.']*BOHR_TO_ANGSTROM,
             'y / A': df_raw['y / a.u.']*BOHR_TO_ANGSTROM,
             'z / A': df_raw['z / a.u.']*BOHR_TO_ANGSTROM,
-            'atom': df_raw['atomic_number'].astype(int).map(atomic_number_to_symbol)
+            'atom': atom_symbols
         })
     # Annotate the columns appropriately with units(!)
     return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine = 'python')
