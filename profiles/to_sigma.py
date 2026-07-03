@@ -15,6 +15,9 @@ import scipy.spatial.distance
 import numpy as np
 import matplotlib.pyplot as plt
 
+BOHR_TO_ANGSTROM = 0.52917721067
+FLOAT_TOKEN_RE = re.compile(r'^[+-]?(?:\d+\.\d*|\d*\.\d+|\d+)(?:[Ee][+-]?\d+)?$')
+
 # From https://doi.org/10.1039/b801115j
 # Covalent radii in angstrom, used to determine bonding
 covalent_radius = {
@@ -128,6 +131,61 @@ for keys, d in bond_distances.copy().items():
 for key in covalent_radius.keys():
     bond_distances[(key, key)] = 2*covalent_radius[key]
 
+atomic_number_to_symbol = {
+    i + 1: symbol for i, symbol in enumerate([
+        'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne',
+        'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca',
+        'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn',
+        'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr',
+        'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn',
+        'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd',
+        'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb',
+        'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg',
+        'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th',
+        'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm',
+        'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds',
+        'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og'
+    ])
+}
+
+
+def is_orca_cpcm(COSMO_contents):
+    return (
+        '# CARTESIAN COORDINATES (A.U.) + RADII (A.U.) + ATOMIC NUMBER' in COSMO_contents
+        and '# SURFACE POINTS (A.U.)' in COSMO_contents
+    )
+
+
+def is_float_token(token):
+    return FLOAT_TOKEN_RE.match(token) is not None
+
+
+def get_orca_corrected_charges(corr_path, expected_count):
+    if not os.path.exists(corr_path):
+        raise FileNotFoundError('Missing ORCA corrected-charge file [{0}]'.format(corr_path))
+
+    with open(corr_path, encoding='utf-8') as fp:
+        corr_contents = fp.read()
+    block = re.search(r"C-PCM corrected charges:\s*\n([\s\S]+)", corr_contents)
+    if block is None:
+        raise ValueError('Could not find "C-PCM corrected charges:" block in [{0}]'.format(corr_path))
+
+    charges = []
+    for line in block.group(1).splitlines():
+        value = line.strip()
+        if not value:
+            continue
+        if is_float_token(value):
+            charges.append(float(value))
+            continue
+        if len(charges) > 0:
+            break
+
+    if len(charges) != expected_count:
+        raise ValueError('Corrected-charge count [{0}] does not match number of segments [{1}] in [{2}]'.format(len(charges), expected_count, corr_path))
+
+    return np.array(charges)
+
 def get_seg_DataFrame(COSMO_contents):
     # Read in the information.  Look for (X, Y, Z), and search to the end of the line, then capture until 
     # you get to a pair of two end-of-line characters, or an eol character followed by the end of string
@@ -142,6 +200,45 @@ def get_seg_DataFrame(COSMO_contents):
         # GAMESS: same unit (Bohr in GAMESS/COSab) as Dmol3 but format is different
         sdata = re.search(r"\(X, Y, Z\)[\sa-zA-Z0-9\(\)\./\*]+\n([\s0-9\-\n.]+)(=+)", COSMO_contents, re.DOTALL).group(1).rstrip()
         table_assign = ['n','atom','x / a.u.','y / a.u.','z / a.u.','charge / e','area / A^2','charge/area / e/A^2','potential']
+    elif is_orca_cpcm(COSMO_contents):
+        # For ORCA CPCM inputs, parsing is strict: besides <name>.cpcm,
+        # a companion <name>.cpcm_corr file with corrected charges must exist.
+        n_segments = int(re.search(r"^\s*(\d+)\s*# Number of surface points\s*$", COSMO_contents, re.MULTILINE).group(1))
+        tail = COSMO_contents.split('# SURFACE POINTS (A.U.)', 1)[1]
+        rows = []
+        for line in tail.splitlines():
+            parts = line.split()
+            if len(parts) == 10 and is_float_token(parts[0]) and is_float_token(parts[-1]):
+                rows.append(' '.join(parts))
+                if len(rows) == n_segments:
+                    break
+        if len(rows) != n_segments:
+            raise ValueError('Failed to parse ORCA surface points: expected {0}, got {1}'.format(n_segments, len(rows)))
+        sdata = '\n'.join(rows)
+        df_raw = pandas.read_csv(
+            StringIO(sdata),
+            names=['x / a.u.','y / a.u.','z / a.u.','area / bohr^2','potential','charge / e','w_leb','switch_f','g_width','atom0'],
+            sep=r'\s+',
+            engine='python'
+        )
+        for col in ['x / a.u.','y / a.u.','z / a.u.','area / bohr^2','potential','charge / e','atom0']:
+            df_raw[col] = pandas.to_numeric(df_raw[col], errors='coerce')
+
+        area_A2 = df_raw['area / bohr^2'].to_numpy()*(BOHR_TO_ANGSTROM**2)
+        charge_e = df_raw['charge / e'].to_numpy()
+        charge_over_area = np.divide(charge_e, area_A2, out=np.zeros_like(charge_e), where=area_A2 != 0)
+
+        return pandas.DataFrame({
+            'n': np.arange(1, len(df_raw) + 1),
+            'atom': df_raw['atom0'].astype(int) + 1,
+            'x / a.u.': df_raw['x / a.u.'],
+            'y / a.u.': df_raw['y / a.u.'],
+            'z / a.u.': df_raw['z / a.u.'],
+            'charge / e': charge_e,
+            'area / A^2': area_A2,
+            'charge/area / e/A^2': charge_over_area,
+            'potential': df_raw['potential']
+        })
     # Annotate the columns appropriately with units(!)
     return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine= 'python')
 
@@ -158,6 +255,40 @@ def get_atom_DataFrame(COSMO_contents):
         # GAMESS: same unit (Angstrom in GAMESS) as Dmol3 but format is different
         sdata = re.search(r"EQUILIBRIUM GEOMETRY[\sa-zA-Z0-9\(\)\./\*\n]+\-+\n(\s[\s\S]+)\n\n\n", COSMO_contents, re.DOTALL).group(1)
         table_assign = ['atom','charge','x / A','y / A','z / A']
+    elif is_orca_cpcm(COSMO_contents):
+        n_atoms = int(re.search(r"^\s*(\d+)\s*# Number of atoms\s*$", COSMO_contents, re.MULTILINE).group(1))
+        coords_block = COSMO_contents.split('# CARTESIAN COORDINATES (A.U.) + RADII (A.U.) + ATOMIC NUMBER', 1)[1]
+        rows = []
+        for line in coords_block.splitlines():
+            parts = line.split()
+            if len(parts) == 5 and is_float_token(parts[0]) and is_float_token(parts[-1]):
+                rows.append(' '.join(parts))
+                if len(rows) == n_atoms:
+                    break
+        if len(rows) != n_atoms:
+            raise ValueError('Failed to parse ORCA atom coordinates: expected {0}, got {1}'.format(n_atoms, len(rows)))
+        sdata = '\n'.join(rows)
+        df_raw = pandas.read_csv(
+            StringIO(sdata),
+            names=['x / a.u.','y / a.u.','z / a.u.','radius / a.u.','atomic_number'],
+            sep=r'\s+',
+            engine='python'
+        )
+        for col in ['x / a.u.','y / a.u.','z / a.u.','atomic_number']:
+            df_raw[col] = pandas.to_numeric(df_raw[col], errors='coerce')
+
+        atom_symbols = df_raw['atomic_number'].astype(int).map(atomic_number_to_symbol)
+        if atom_symbols.isnull().any():
+            bad_numbers = sorted(df_raw.loc[atom_symbols.isnull(), 'atomic_number'].astype(int).unique().tolist())
+            raise ValueError('Unsupported atomic number(s) in ORCA coordinates: {0}'.format(bad_numbers))
+
+        return pandas.DataFrame({
+            'atomidentifier': np.arange(1, len(df_raw) + 1),
+            'x / A': df_raw['x / a.u.']*BOHR_TO_ANGSTROM,
+            'y / A': df_raw['y / a.u.']*BOHR_TO_ANGSTROM,
+            'z / A': df_raw['z / a.u.']*BOHR_TO_ANGSTROM,
+            'atom': atom_symbols
+        })
     # Annotate the columns appropriately with units(!)
     return pandas.read_csv(StringIO(sdata), names=table_assign, sep=r'\s+',engine = 'python')
 
@@ -175,6 +306,10 @@ def get_area_volume(COSMO_contents):
         # GAMESS: units of area and volume are same as DMol3
         area = float(re.search(r"Total surface area of cavity \(A\*\*2\)\s+=(.+)\n", COSMO_contents).group(1).strip())
         volume = float(re.search(r"Total volume of cavity \(A\*\*3\)\s+=(.+)\n", COSMO_contents).group(1).strip())
+    elif is_orca_cpcm(COSMO_contents):
+        # ORCA CPCM: area and volume are printed in atomic units (bohr^2 and bohr^3)
+        area = float(re.search(r"^\s*([\-+0-9Ee\.]+)\s*# Area\s*$", COSMO_contents, re.MULTILINE).group(1).strip())*(BOHR_TO_ANGSTROM**2)
+        volume = float(re.search(r"^\s*([\-+0-9Ee\.]+)\s*# Volume\s*$", COSMO_contents, re.MULTILINE).group(1).strip())*(BOHR_TO_ANGSTROM**3)
 
     return area, volume
 
@@ -218,6 +353,12 @@ class Dmol3COSMOParser(object):
         self.df_atom = get_atom_DataFrame(COSMO_contents)
         self.area_A2, self.volume_A3 = get_area_volume(COSMO_contents)
 
+        if is_orca_cpcm(COSMO_contents):
+            corrected_charges = get_orca_corrected_charges(inpath + '_corr', len(self.df))
+            self.df['charge / e'] = corrected_charges
+            area = self.df['area / A^2'].to_numpy()
+            self.df['charge/area / e/A^2'] = np.divide(corrected_charges, area, out=np.zeros_like(corrected_charges), where=area != 0)
+
         averaging_options = ['Hsieh','Mullins']
         if averaging not in averaging_options:
             raise ValueError('averaging[' + averaging + '] not in '+str(averaging_options))
@@ -227,7 +368,7 @@ class Dmol3COSMOParser(object):
 
         # Convert coordinates in a.u. (actually, bohr) to Angstroms
         for field in ['x','y','z']:
-            self.df[field + ' / A'] = self.df[field + ' / a.u.']*0.52917721067 # https://physics.nist.gov/cgi-bin/cuu/Value?bohrrada0
+            self.df[field + ' / A'] = self.df[field + ' / a.u.']*BOHR_TO_ANGSTROM # https://physics.nist.gov/cgi-bin/cuu/Value?bohrrada0
         # Calculate the effective circular radius for this segment patch from its area
         self.df['rn / A']  = (self.df['area / A^2']/np.pi)**0.5
         self.df['rn^2 / A^2'] = self.df['rn / A']**2
